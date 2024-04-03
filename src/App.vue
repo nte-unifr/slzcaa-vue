@@ -1,57 +1,14 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import IconLanguage from './components/icons/IconLanguage.vue'
-import IconUser from './components/icons/IconUser.vue'
+import PageFooter from './components/PageFooter.vue'
+import PageHeader from './components/PageHeader.vue'
+import SearchFilter from './components/SearchFilter.vue'
+import SimpleTable from './components/SimpleTable.vue'
 </script>
 
 <template>
-
-
-  <div class="navbar bg-base-300">
-    <div class="navbar-start">
-      <a class="btn btn-ghost text-xl" href="https://www.unifr.ch">
-        <img alt="Unifr logo" class="h-8" src="./assets/logo.svg" />
-      </a>
-    </div>
-    <div class="navbar-center">
-      <a class="btn btn-ghost text-xl">Research Material</a>
-    </div>
-    <div class="navbar-end">
-      <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-          <IconUser />
-        </div>
-        <div tabindex="0" class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
-          <div class="card-body">
-            <div class="card-actions">
-              <button class="btn btn-primary btn-block">Registration</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-          <IconLanguage />
-        </div>
-        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2
-          shadow bg-base-100 rounded-box w-16">
-          <li><a>FR</a></li>
-          <li><a>DE</a></li>
-          <li><a>EN</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div className="text-sm breadcrumbs mx-4 font-bold">
-    <ul>
-      <li>Language Center</li>
-      <li>Self-access center for language learning (SAC)</li>
-    </ul>
-  </div>
-
+  <PageHeader />
   <main class="mb-8 mx-4">
-    <p>
+    <p class="text-center my-4">
       What language would you like to learn:
       <select class="select select-primary w-full max-w-xs">
         <option disabled selected>What language?</option>
@@ -63,7 +20,19 @@ import IconUser from './components/icons/IconUser.vue'
         <option>TODO</option>
       </select>
     </p>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr]">
+      <div>
+        <SearchFilter />
+      </div>
+      <div>
+        <div role="alert" class="alert">
+          <p>1 to 50 of 1,028 entries (filtered from 7,134 totalentries)</p>
+        </div>
+        <SimpleTable />
+      </div>
+    </div>
   </main>
+  <PageFooter />
 </template>
 
 <style scoped></style>
