@@ -1,5 +1,14 @@
 <script setup>
-import TablePagination from './TablePagination.vue'
+const props = defineProps({
+  rows: {
+    type: Array,
+    required: true
+  },
+  page: {
+    type: Number,
+    required: true
+  }
+})
 </script>
 
 <template>
@@ -18,27 +27,29 @@ import TablePagination from './TablePagination.vue'
         </tr>
       </thead>
       <tbody>
-        <!-- row 1 -->
-        <tr>
+        <tr v-for="(row, index) in props.rows" :key="index">
           <th>
             <label>
               <input type="checkbox" class="checkbox" />
             </label>
           </th>
-          <td>Some title</td>
+          <td>{{ row.titel }}</td>
           <td>
-            <span class="badge badge-ghost badge-sm">A1</span>
-            <span class="badge badge-ghost badge-sm">A2</span>
-            <span class="badge badge-ghost badge-sm">B1</span>
+            <span
+              v-for="(level, j) in row.sprachniveau.split(' ')"
+              :key="j"
+              class="badge badge-ghost badge-sm"
+            >
+              {{ level }}
+            </span>
           </td>
-          <td>Vocabulary</td>
-          <td>German</td>
-          <td>1996</td>
-          <td>No</td>
-          <td>Some description here that can be very long.</td>
+          <td>{{ row.fertigkeit }}</td>
+          <td>{{ row.ausgangssprache }}</td>
+          <td>{{ row.jahr }}</td>
+          <td>{{ row.ausleihe_ble }}</td>
+          <td>{{ row.kommentar }}</td>
         </tr>
       </tbody>
     </table>
-    <TablePagination />
   </div>
 </template>
