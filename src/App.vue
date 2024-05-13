@@ -3,7 +3,7 @@ import { ref, watch } from 'vue'
 import LanguageList from './components/LanguageList.vue'
 import PageFooter from './components/PageFooter.vue'
 import PageHeader from './components/PageHeader.vue'
-import SearchFilter from './components/SearchFilter.vue'
+import FiltersNav from './components/FiltersNav.vue'
 import SimpleTable from './components/SimpleTable.vue'
 import TablePagination from './components/TablePagination.vue'
 import { useFetch } from './fetch.js'
@@ -54,7 +54,7 @@ function generateUrlTable(page) {
     <LanguageList />
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr]">
       <div>
-        <SearchFilter />
+        <FiltersNav />
       </div>
       <div>
         <div role="alert" class="alert">
@@ -67,7 +67,7 @@ function generateUrlTable(page) {
         </div>
         <div v-if="tableError">Oops! Error encountered: {{ tableError.message }}</div>
         <div v-else-if="rows">
-          <SimpleTable :rows="rows" :page="page" />
+          <SimpleTable :rows="rows" />
           <TablePagination
             :page="page"
             :nbPage="Math.ceil(nbRowsInDatabase / NB_ELEMENT_PER_PAGE)"

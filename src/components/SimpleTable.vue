@@ -3,10 +3,6 @@ const props = defineProps({
   rows: {
     type: Array,
     required: true
-  },
-  page: {
-    type: Number,
-    required: true
   }
 })
 </script>
@@ -36,7 +32,7 @@ const props = defineProps({
           <td>{{ row.titel }}</td>
           <td>
             <span
-              v-for="(level, j) in row.sprachniveau.split(' ')"
+              v-for="(level, j) in (row.sprachniveau || '').split(' ')"
               :key="j"
               class="badge badge-ghost badge-sm"
             >
