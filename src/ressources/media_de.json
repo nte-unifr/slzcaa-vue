@@ -1,0 +1,12 @@
+{
+  "txt": "Buch",
+  "acd": "Audio CD",
+  "cdr": "CD-ROM",
+  "dvd": "DVD",
+  "vid": "Videokassette",
+  "cas": "Audiokassette",
+  "web": "Link",
+  "dvdr": "DVD-ROM",
+  "dcd": "Daten-CD",
+  "installed": "[installiert auf PCs]"
+}

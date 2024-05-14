@@ -13,10 +13,7 @@ const props = defineProps({
 const emit = defineEmits(['toggleFilter'])
 
 function onChange(e) {
-  const labelAndInput = e.target.labels[0]
-  const labelNode = labelAndInput.firstChild
-  const label = labelNode.innerText
-  emit('toggleFilter', label)
+  emit('toggleFilter', e.target.value)
 }
 </script>
 
@@ -34,10 +31,11 @@ function onChange(e) {
       <ul>
         <li v-for="(item, index) in props.items" :key="index" class="border-t-2">
           <label class="label cursor-pointer">
-            <span class="label-text">{{ item.name }}</span>
+            <span class="label-text">{{ item.label }}</span>
             <input
               type="checkbox"
               class="checkbox checkbox-xs"
+              :value="item.key"
               :checked="item.checked"
               v-on:change="onChange"
             />
