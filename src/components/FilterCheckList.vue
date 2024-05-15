@@ -10,10 +10,10 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['toggleFilter'])
+const emit = defineEmits(['toggle'])
 
 function onChange(e) {
-  emit('toggleFilter', e.target.value)
+  emit('toggle', e.target.value)
 }
 </script>
 
@@ -23,10 +23,8 @@ function onChange(e) {
       {{ props.title }}
     </summary>
     <div class="collapse-content bg-white">
-      <p>
-        <button class="btn btn-xs">Select all</button>
-        |
-        <button class="btn btn-xs">Clear all</button>
+      <p class="text-center">
+        <button class="btn btn-xs">(Un)select all</button>
       </p>
       <ul>
         <li v-for="(item, index) in props.items" :key="index" class="border-t-2">
