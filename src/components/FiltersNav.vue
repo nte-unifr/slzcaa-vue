@@ -1,31 +1,23 @@
 <script setup>
 import { ref } from 'vue'
 import columnsEn from '../ressources/columns_en.json'
-import FilterBool from './FilterBool.vue'
 import FilterCheckList from './FilterCheckList.vue'
 import FilterLang from './FilterLang.vue'
 import FilterLevels from './FilterLevels.vue'
+import FilterLoanable from './FilterLoanable.vue'
 import FilterMedia from './FilterMedia.vue'
 import FilterModalities from './FilterModalities.vue'
+import FilterPreinstalled from './FilterPreinstalled.vue'
 import FilterSkills from './FilterSkills.vue'
 import FilterSubjects from './FilterSubjects.vue'
+import FilterYear from './FilterYear.vue'
 
-const boolMaterial = ref(false)
-const boolLoanable = ref(false)
 const hiddenByDefault = new Set(['fachbezug', 'medium', 'asl', 'autor', 'code'])
 const columns = ref(
   Object.entries(columnsEn).map((r) => {
     return { key: r[0], label: r[1], checked: !hiddenByDefault.has(r[0]) }
   })
 )
-
-function handleBoolLoanable() {
-  boolLoanable.value = !boolLoanable.value
-}
-
-function handleBoolMaterial() {
-  boolMaterial.value = !boolMaterial.value
-}
 
 function handleLang(param) {
   console.log(param)
@@ -35,11 +27,19 @@ function handleLevel(param) {
   console.log(param)
 }
 
+function handleLoanable(param) {
+  console.log(param)
+}
+
 function handleMedia(param) {
   console.log(param)
 }
 
 function handleModalities(param) {
+  console.log(param)
+}
+
+function handlePreinstalled(param) {
   console.log(param)
 }
 
@@ -55,18 +55,19 @@ function handleSubjects(param) {
 <template>
   <FilterLevels @toggle="handleLevel" />
   <FilterSkills @toggle="handleSkills" />
-  <p>TODO: Add tricks</p>
+  <div role="alert" class="alert">
+    <span
+      ><b>Trick!</b> Different combinations of skills and target levels (e.g. Reading B2 + Speaking
+      A2) require separate search operations.</span
+    >
+  </div>
   <FilterSubjects @toggle="handleSubjects" />
   <FilterLang @toggle="handleLang" />
   <FilterMedia @toggle="handleMedia" />
-  <p>TODO: add radio buttons</p>
+  <FilterYear />
   <FilterModalities @toggle="handleModalities" />
-  <FilterBool
-    title="Material preinstalled on the PCs"
-    :checked="boolMaterial"
-    @toggle="handleBoolMaterial"
-  />
-  <FilterBool title="Only loanable material" :checked="boolLoanable" @toggle="handleBoolLoanable" />
+  <FilterPreinstalled @toggle="handlePreinstalled" />
+  <FilterLoanable @toggle="handleLoanable" />
   <FilterCheckList title="Displayed columns" :items="columns" />
   <p>TODO: search</p>
 </template>

@@ -12,8 +12,8 @@ const props = defineProps({
 
 const emit = defineEmits(['toggle'])
 
-function onChange(e) {
-  emit('toggle', e.target.value)
+function onChange() {
+  emit('toggle')
 }
 </script>
 
