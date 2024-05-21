@@ -12,7 +12,7 @@ function onChange() {
 
 watchEffect(() => {
   if (checked.value) {
-    const param = JSON.stringify({ _or: { ausleihe_ble: { _eq: true } } })
+    const param = JSON.stringify({ ausleihe_ble: { _eq: true } })
     emit('toggle', param)
   } else {
     emit('toggle', '')

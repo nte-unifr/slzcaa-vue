@@ -12,7 +12,7 @@ function onChange() {
 
 watchEffect(() => {
   if (checked.value) {
-    const param = JSON.stringify({ _or: { install: { _eq: true } } })
+    const param = JSON.stringify({ install: { _eq: true } })
     emit('toggle', param)
   } else {
     emit('toggle', '')

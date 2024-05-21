@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import columnsEn from '../ressources/columns_en.json'
 import FilterCheckList from './FilterCheckList.vue'
 import FilterLang from './FilterLang.vue'
@@ -10,7 +10,10 @@ import FilterModalities from './FilterModalities.vue'
 import FilterPreinstalled from './FilterPreinstalled.vue'
 import FilterSkills from './FilterSkills.vue'
 import FilterSubjects from './FilterSubjects.vue'
+import FilterText from './FilterText.vue'
 import FilterYear from './FilterYear.vue'
+
+const emit = defineEmits(['filter'])
 
 const hiddenByDefault = new Set(['fachbezug', 'medium', 'asl', 'autor', 'code'])
 const columns = ref(
@@ -18,38 +21,72 @@ const columns = ref(
     return { key: r[0], label: r[1], checked: !hiddenByDefault.has(r[0]) }
   })
 )
+const filterLang = ref('')
+const filterLevels = ref('')
+const filterLoanable = ref('')
+const filterMedia = ref('')
+const filterModalities = ref('')
+const filterPreinstalled = ref('')
+const filterSearch = ref('')
+const filterSkills = ref('')
+const filterSubjects = ref('')
 
 function handleLang(param) {
-  console.log(param)
+  filterLang.value = param
 }
 
 function handleLevel(param) {
-  console.log(param)
+  filterLevels.value = param
 }
 
 function handleLoanable(param) {
-  console.log(param)
+  filterLoanable.value = param
 }
 
 function handleMedia(param) {
-  console.log(param)
+  filterMedia.value = param
 }
 
 function handleModalities(param) {
-  console.log(param)
+  filterModalities.value = param
 }
 
 function handlePreinstalled(param) {
-  console.log(param)
+  filterPreinstalled.value = param
+}
+
+function handleSearch(param) {
+  filterSearch.value = param
 }
 
 function handleSkills(param) {
-  console.log(param)
+  filterSkills.value = param
 }
 
 function handleSubjects(param) {
-  console.log(param)
+  filterSubjects.value = param
 }
+
+watchEffect(() => {
+  const conditions = [
+    filterLang.value,
+    filterLevels.value,
+    filterLoanable.value,
+    filterMedia.value,
+    filterModalities.value,
+    filterPreinstalled.value,
+    filterSearch.value,
+    filterSkills.value,
+    filterSubjects.value
+  ]
+  const param = conditions.filter((c) => c).join(',')
+  if (param) {
+    const tmp = `{"_and":[${param}]}`
+    emit('filter', tmp)
+  } else {
+    emit('filter', '')
+  }
+})
 </script>
 
 <template>
@@ -69,5 +106,5 @@ function handleSubjects(param) {
   <FilterPreinstalled @toggle="handlePreinstalled" />
   <FilterLoanable @toggle="handleLoanable" />
   <FilterCheckList title="Displayed columns" :items="columns" />
-  <p>TODO: search</p>
+  <FilterText @search="handleSearch" />
 </template>
