@@ -14,6 +14,7 @@ const DEBOUNCE_TIME = 512
 const DEBOUNCE_MAX_WAITE = 1024
 const NB_ELEMENT_PER_PAGE = 50
 
+const columnsChecked = ref(new Set([]))
 const filterParam = ref('')
 const page = ref(1)
 const nbRowsFound = ref(0)
@@ -64,8 +65,13 @@ watchDebounced(
   { debounce: DEBOUNCE_TIME, maxWait: DEBOUNCE_MAX_WAITE }
 )
 
+function changeColumns(param) {
+  columnsChecked.value = param
+}
+
 function changeFilter(param) {
   filterParam.value = param
+  page.value = 1
 }
 
 function changePage(newPage) {
@@ -80,7 +86,7 @@ function changePage(newPage) {
     <LanguageList />
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr]">
       <div>
-        <FiltersNav @filter="changeFilter" />
+        <FiltersNav @columns-checked="changeColumns" @filter="changeFilter" />
       </div>
       <div>
         <div role="alert" class="alert">
@@ -93,7 +99,7 @@ function changePage(newPage) {
         </div>
         <div v-if="errorTable">Oops! Error encountered: {{ errorTable.message }}</div>
         <div v-else-if="dataTable">
-          <SimpleTable :rows="dataTable.data" />
+          <SimpleTable :cols="columnsChecked" :rows="dataTable.data" />
           <TablePagination
             :page="page"
             :nbPage="Math.ceil(nbRowsFound / NB_ELEMENT_PER_PAGE)"

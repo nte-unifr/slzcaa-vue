@@ -1,7 +1,6 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
-import columnsEn from '../ressources/columns_en.json'
-import FilterCheckList from './FilterCheckList.vue'
+import FilterColumns from './FilterColumns.vue'
 import FilterLang from './FilterLang.vue'
 import FilterLevels from './FilterLevels.vue'
 import FilterLoanable from './FilterLoanable.vue'
@@ -13,14 +12,8 @@ import FilterSubjects from './FilterSubjects.vue'
 import FilterText from './FilterText.vue'
 import FilterYear from './FilterYear.vue'
 
-const emit = defineEmits(['filter'])
+const emit = defineEmits(['columnsChecked', 'filter'])
 
-const hiddenByDefault = new Set(['fachbezug', 'medium', 'asl', 'autor', 'code'])
-const columns = ref(
-  Object.entries(columnsEn).map((r) => {
-    return { key: r[0], label: r[1], checked: !hiddenByDefault.has(r[0]) }
-  })
-)
 const filterLang = ref('')
 const filterLevels = ref('')
 const filterLoanable = ref('')
@@ -30,6 +23,10 @@ const filterPreinstalled = ref('')
 const filterSearch = ref('')
 const filterSkills = ref('')
 const filterSubjects = ref('')
+
+function handleColumns(param) {
+  emit('columnsChecked', param)
+}
 
 function handleLang(param) {
   filterLang.value = param
@@ -105,6 +102,6 @@ watchEffect(() => {
   <FilterModalities @toggle="handleModalities" />
   <FilterPreinstalled @toggle="handlePreinstalled" />
   <FilterLoanable @toggle="handleLoanable" />
-  <FilterCheckList title="Displayed columns" :items="columns" />
+  <FilterColumns @toggle="handleColumns" />
   <FilterText @search="handleSearch" />
 </template>
