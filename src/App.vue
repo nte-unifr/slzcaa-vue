@@ -11,10 +11,11 @@ import { useFetch } from './fetch.js'
 
 const BASE_URL = 'https://eddb.unifr.ch/slzcaa-admin/items/materials'
 const DEBOUNCE_TIME = 512
-const DEBOUNCE_MAX_WAITE = 1024
+const DEBOUNCE_MAX_WAIT = 1024
 const NB_ELEMENT_PER_PAGE = 50
 
 const columnsChecked = ref(new Set([]))
+const filterLang = ref('EFL')
 const filterParam = ref('')
 const page = ref(1)
 const nbRowsFound = ref(0)
@@ -45,24 +46,18 @@ watchDebounced(
     let url = BASE_URL
     url += `?limit=${NB_ELEMENT_PER_PAGE}`
     url += `&page=${page.value}`
-    if (filterParam.value) {
-      url += `&filter=${filterParam.value}`
-    }
+    url += `&filter=${filterParam.value}`
     urlDataTable.value = url
   },
-  { debounce: DEBOUNCE_TIME, maxWait: DEBOUNCE_MAX_WAITE }
+  { debounce: DEBOUNCE_TIME, maxWait: DEBOUNCE_MAX_WAIT }
 )
 
 watchDebounced(
   filterParam,
   () => {
-    if (filterParam.value) {
-      urlNbFound.value = `${BASE_URL}?filter=${filterParam.value}&aggregate[count]=*`
-    } else {
-      nbRowsFound.value = nbRowsInDatabase.value
-    }
+    urlNbFound.value = `${BASE_URL}?filter=${filterParam.value}&aggregate[count]=*`
   },
-  { debounce: DEBOUNCE_TIME, maxWait: DEBOUNCE_MAX_WAITE }
+  { debounce: DEBOUNCE_TIME, maxWait: DEBOUNCE_MAX_WAIT }
 )
 
 function changeColumns(param) {
@@ -78,15 +73,23 @@ function changePage(newPage) {
   page.value = newPage
   window.scrollTo({ top: 0 })
 }
+
+function filterLanguage(lang) {
+  filterLang.value = lang
+}
 </script>
 
 <template>
   <PageHeader />
   <main class="mb-8 mx-4">
-    <LanguageList />
+    <LanguageList @on-change="filterLanguage" />
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr]">
       <div>
-        <FiltersNav @columns-checked="changeColumns" @filter="changeFilter" />
+        <FiltersNav
+          :language="filterLang"
+          @columns-checked="changeColumns"
+          @filter="changeFilter"
+        />
       </div>
       <div>
         <div role="alert" class="alert">

@@ -12,9 +12,16 @@ import FilterSubjects from './FilterSubjects.vue'
 import FilterText from './FilterText.vue'
 import FilterYear from './FilterYear.vue'
 
+const props = defineProps({
+  language: {
+    type: String,
+    required: true
+  }
+})
+
 const emit = defineEmits(['columnsChecked', 'filter'])
 
-const filterLang = ref('')
+const filterLangSrc = ref('')
 const filterLevels = ref('')
 const filterLoanable = ref('')
 const filterMedia = ref('')
@@ -29,7 +36,7 @@ function handleColumns(param) {
 }
 
 function handleLang(param) {
-  filterLang.value = param
+  filterLangSrc.value = param
 }
 
 function handleLevel(param) {
@@ -66,7 +73,8 @@ function handleSubjects(param) {
 
 watchEffect(() => {
   const conditions = [
-    filterLang.value,
+    JSON.stringify({ spr: { _contains: props.language } }), // field in the header
+    filterLangSrc.value,
     filterLevels.value,
     filterLoanable.value,
     filterMedia.value,
@@ -77,12 +85,8 @@ watchEffect(() => {
     filterSubjects.value
   ]
   const param = conditions.filter((c) => c).join(',')
-  if (param) {
-    const tmp = `{"_and":[${param}]}`
-    emit('filter', tmp)
-  } else {
-    emit('filter', '')
-  }
+  const tmp = `{"_and":[${param}]}`
+  emit('filter', tmp)
 })
 </script>
 
