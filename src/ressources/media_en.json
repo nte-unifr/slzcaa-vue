@@ -7,6 +7,5 @@
   "cas": "Audio tape",
   "web": "Link",
   "dvdr": "DVD-ROM",
-  "dcd": "Data CD",
-  "installed": "[installed on PCs]"
+  "dcd": "Data CD"
 }

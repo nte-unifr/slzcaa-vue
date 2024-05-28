@@ -7,6 +7,5 @@
   "cas": "Audiokassette",
   "web": "Link",
   "dvdr": "DVD-ROM",
-  "dcd": "Daten-CD",
-  "installed": "[installiert auf PCs]"
+  "dcd": "Daten-CD"
 }

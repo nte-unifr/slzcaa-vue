@@ -30,6 +30,7 @@ const filterPreinstalled = ref('')
 const filterSearch = ref('')
 const filterSkills = ref('')
 const filterSubjects = ref('')
+const filterYear = ref('')
 
 function handleColumns(param) {
   emit('columnsChecked', param)
@@ -71,6 +72,10 @@ function handleSubjects(param) {
   filterSubjects.value = param
 }
 
+function handleYear(param) {
+  filterYear.value = param
+}
+
 watchEffect(() => {
   const conditions = [
     JSON.stringify({ spr: { _contains: props.language } }), // field in the header
@@ -82,7 +87,8 @@ watchEffect(() => {
     filterPreinstalled.value,
     filterSearch.value,
     filterSkills.value,
-    filterSubjects.value
+    filterSubjects.value,
+    filterYear.value
   ]
   const param = conditions.filter((c) => c).join(',')
   const tmp = `{"_and":[${param}]}`
@@ -102,7 +108,7 @@ watchEffect(() => {
   <FilterSubjects @toggle="handleSubjects" />
   <FilterLang @toggle="handleLang" />
   <FilterMedia @toggle="handleMedia" />
-  <FilterYear />
+  <FilterYear @change-year="handleYear" />
   <FilterModalities @toggle="handleModalities" />
   <FilterPreinstalled @toggle="handlePreinstalled" />
   <FilterLoanable @toggle="handleLoanable" />

@@ -7,6 +7,5 @@
   "cas": "Cassette audio",
   "web": "Lien web",
   "dvdr": "DVD-ROM",
-  "dcd": "Data CD",
-  "installed": "[installé sur les PCs]"
+  "dcd": "Data CD"
 }
