@@ -17,11 +17,15 @@ function onChange(param) {
 }
 
 watchEffect(() => {
+  // TODO: add a boolean field `isAnotherLangSrc` using a hook.
   const selected = items.value.filter((item) => item.checked)
   const paramRequired = selected.length > 0 && selected.length < items.value.length
   if (paramRequired) {
-    const rows = selected.map((e) => e.key)
-    const param = JSON.stringify({ ausgangssprache: { _in: rows } })
+    const rows = selected.map((e) => {
+      const key = e.key.charAt(0).toUpperCase() + e.key.slice(1)
+      return { ausgangssprache: { _contains: key } }
+    })
+    const param = JSON.stringify({ _or: rows })
     emit('toggle', param)
   } else {
     emit('toggle', '')

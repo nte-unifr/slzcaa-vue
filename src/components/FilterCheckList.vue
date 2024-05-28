@@ -15,6 +15,14 @@ const emit = defineEmits(['toggle'])
 function onChange(e) {
   emit('toggle', e.target.value)
 }
+
+function onSelectAll() {
+  const allChecked = props.items.every((item) => item.checked)
+  const toToggle = (item) => allChecked || !item.checked
+  props.items.filter(toToggle).forEach((item) => {
+    emit('toggle', item.key)
+  })
+}
 </script>
 
 <template>
@@ -24,7 +32,10 @@ function onChange(e) {
     </summary>
     <div class="collapse-content bg-white">
       <p class="text-center">
-        <button class="btn btn-xs">(Un)select all</button>
+        <button class="btn btn-xs" v-on:click="onSelectAll">
+          <span v-if="props.items.every((item) => item.checked)">Unselect all</span>
+          <span v-else>Select all</span>
+        </button>
       </p>
       <ul>
         <li v-for="(item, index) in props.items" :key="index" class="border-t-2">

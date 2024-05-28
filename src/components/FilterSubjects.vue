@@ -33,7 +33,7 @@ watchEffect(() => {
   const paramRequired = selected.length > 0 && selected.length < nbSubject
   if (paramRequired) {
     const rows = selected.map((e) => {
-      return { fachbezug: { _in: e.key } }
+      return { fachbezug: { _contains: e.key } }
     })
     rows.push({ fachbezug: { _null: true } })
     const param = JSON.stringify({ _or: rows })
