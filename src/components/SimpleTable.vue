@@ -10,8 +10,16 @@ const props = defineProps({
   }
 })
 
+const emit = defineEmits(['selectRow'])
+
 function displayCode(row) {
   return [row.bereich, row.spr, row.sb, row.sm2].filter((element) => element).join(' | ')
+}
+
+function onChange(e) {
+  const id = e.target.value
+  const isChecked = e.target.checked
+  emit('selectRow', id, isChecked)
 }
 </script>
 
@@ -39,7 +47,7 @@ function displayCode(row) {
         <tr v-for="(row, index) in props.rows" :key="index">
           <th>
             <label>
-              <input type="checkbox" class="checkbox" />
+              <input type="checkbox" class="checkbox" :value="row.id" v-on:change="onChange" />
             </label>
           </th>
           <td v-show="props.cols.has('titel')">{{ row.titel }}</td>

@@ -1,22 +1,26 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { watchDebounced } from '@vueuse/core'
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from 'pdfmake/build/vfs_fonts'
 import LanguageList from './components/LanguageList.vue'
 import PageFooter from './components/PageFooter.vue'
 import PageHeader from './components/PageHeader.vue'
 import FiltersNav from './components/FiltersNav.vue'
 import SimpleTable from './components/SimpleTable.vue'
+import TableInfo from './components/TableInfo.vue'
 import TablePagination from './components/TablePagination.vue'
+import { NB_ELEMENT_PER_PAGE } from './config.js'
 import { useFetch } from './fetch.js'
 
 const BASE_URL = 'https://eddb.unifr.ch/slzcaa-admin/items/materials'
 const DEBOUNCE_TIME = 512
 const DEBOUNCE_MAX_WAIT = 1024
-const NB_ELEMENT_PER_PAGE = 50
 
 const columnsChecked = ref(new Set([]))
 const filterLang = ref('EFL')
 const filterParam = ref('')
+const itemsSelected = ref(new Set([]))
 const page = ref(1)
 const nbRowsFound = ref(0)
 const nbRowsInDatabase = ref(0)
@@ -74,8 +78,67 @@ function changePage(newPage) {
   window.scrollTo({ top: 0 })
 }
 
+function downloadPdf() {
+  const docDefinition = {
+    pageOrientation: 'landscape',
+    defaultStyle: {
+      fontSize: 9
+    },
+    content: [
+      { text: 'This is a header', style: 'header' },
+      {
+        table: {
+          body: [
+            [
+              'Title',
+              'Level',
+              'Skills',
+              'Subject',
+              'Source',
+              'Media',
+              'Year',
+              'Modalities',
+              'Author',
+              'Code',
+              'Loanable',
+              'Description'
+            ],
+            ...Array.from(itemsSelected.value).map((item) => {
+              return [
+                item.titel,
+                item.sprachniveau,
+                item.fertigkeit,
+                item.fachbezug,
+                item.ausgangssprache,
+                item.medium,
+                item.jahr,
+                item.asl,
+                item.autor,
+                'TODO', // item.code,
+                item.ausleihe_ble,
+                item.kommentar
+              ]
+            })
+          ]
+        }
+      }
+    ]
+  }
+  pdfMake.vfs = pdfFonts.pdfMake.vfs
+  pdfMake.createPdf(docDefinition).open()
+}
+
 function filterLanguage(lang) {
   filterLang.value = lang
+}
+
+function selectRow(id, isChecked) {
+  const item = dataTable.value.data.find((item) => item.id == id)
+  if (isChecked) {
+    itemsSelected.value.add(item)
+  } else {
+    itemsSelected.value.delete(item)
+  }
 }
 </script>
 
@@ -92,17 +155,15 @@ function filterLanguage(lang) {
         />
       </div>
       <div>
-        <div role="alert" class="alert">
-          <p>
-            {{ 1 + (page - 1) * NB_ELEMENT_PER_PAGE }}
-            to
-            {{ Math.min(page * NB_ELEMENT_PER_PAGE, nbRowsFound) }}
-            of {{ nbRowsFound }} entries (filtered from {{ nbRowsInDatabase }} total entries)
-          </p>
-        </div>
+        <TableInfo
+          :currentPage="page"
+          :nbEntriesFound="nbRowsFound"
+          :nbEntriesTotal="nbRowsInDatabase"
+          @download-pdf="downloadPdf"
+        />
         <div v-if="errorTable">Oops! Error encountered: {{ errorTable.message }}</div>
         <div v-else-if="dataTable">
-          <SimpleTable :cols="columnsChecked" :rows="dataTable.data" />
+          <SimpleTable :cols="columnsChecked" :rows="dataTable.data" @select-row="selectRow" />
           <TablePagination
             :page="page"
             :nbPage="Math.ceil(nbRowsFound / NB_ELEMENT_PER_PAGE)"
