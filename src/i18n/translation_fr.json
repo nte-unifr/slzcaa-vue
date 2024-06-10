@@ -1,0 +1,20 @@
+{
+  "footer": {
+    "language_center": "Centre de langues",
+    "nte": "Centre NTE",
+    "unifr": "Université de Fribourg"
+  },
+  "header": {
+    "language_center": "Centre de langues",
+    "registration": "Inscription",
+    "self_access": "Centre d'autoapprentissage de langues (CAA)",
+    "title": "Recherche de Matériel",
+    "what_language": "Quelle langue désirez-vous apprendre :"
+  },
+  "info": {
+    "download": "Télécharger",
+    "entries_range": "{0} à {1}",
+    "entries_among": "sur {0} éléments",
+    "entries_filtered": "filtré de {0} éléments au total"
+  }
+}

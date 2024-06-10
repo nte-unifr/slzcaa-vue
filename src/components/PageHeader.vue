@@ -1,6 +1,12 @@
 <script setup>
 import IconLanguage from './icons/IconLanguage.vue'
 import IconUser from './icons/IconUser.vue'
+import { i18n } from '../i18n'
+
+function switchLanguage(lang) {
+  localStorage.setItem('locale', lang)
+  i18n.global.locale = lang
+}
 </script>
 
 <template>
@@ -11,7 +17,7 @@ import IconUser from './icons/IconUser.vue'
       </a>
     </div>
     <div class="navbar-center">
-      <a class="btn btn-ghost text-xl">Research Material</a>
+      <a class="btn btn-ghost text-xl">{{ $t('header.title') }}</a>
     </div>
     <div class="navbar-end">
       <div class="dropdown dropdown-end">
@@ -24,7 +30,9 @@ import IconUser from './icons/IconUser.vue'
         >
           <div class="card-body">
             <div class="card-actions">
-              <button class="btn btn-primary btn-block">Registration</button>
+              <button class="btn btn-primary btn-block">
+                {{ $t('header.registration') }}
+              </button>
             </div>
           </div>
         </div>
@@ -37,9 +45,9 @@ import IconUser from './icons/IconUser.vue'
           tabindex="0"
           class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-16"
         >
-          <li><a>FR</a></li>
-          <li><a>DE</a></li>
-          <li><a>EN</a></li>
+          <li><a @click="() => switchLanguage('de')">DE</a></li>
+          <li><a @click="() => switchLanguage('en')">EN</a></li>
+          <li><a @click="() => switchLanguage('fr')">FR</a></li>
         </ul>
       </div>
     </div>
@@ -47,8 +55,8 @@ import IconUser from './icons/IconUser.vue'
 
   <div className="text-sm breadcrumbs mx-4 font-bold">
     <ul>
-      <li>Language Center</li>
-      <li>Self-access center for language learning (SAC)</li>
+      <li>{{ $t('header.language_center') }}</li>
+      <li>{{ $t('header.self_access') }}</li>
     </ul>
   </div>
 

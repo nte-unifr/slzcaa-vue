@@ -12,7 +12,7 @@ function onChange(e) {
 
 <template>
   <p class="text-center my-4">
-    What language would you like to learn:
+    {{ $t('header.what_language') }}
     <select class="select select-primary w-full max-w-xs" v-on:change="onChange">
       <option value="EFL">{{ languages['EFL'] }}</option>
       <option v-for="(language, key) in languages" :key="key" :value="key">

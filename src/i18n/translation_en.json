@@ -1,0 +1,20 @@
+{
+  "footer": {
+    "language_center": "Language Center",
+    "nte": "NTE Center",
+    "unifr": "University of Fribourg"
+  },
+  "header": {
+    "language_center": "Language Center",
+    "registration": "Registration",
+    "self_access": "Self-access center for language learning (SAC)",
+    "title": "Research Material",
+    "what_language": "What language would you like to learn:"
+  },
+  "info": {
+    "download": "Download",
+    "entries_range": "{0} to {1}",
+    "entries_among": "of {0} entries",
+    "entries_filtered": "filtered from {0} total entries"
+  }
+}

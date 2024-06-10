@@ -26,13 +26,17 @@ function downloadPdf() {
 <template>
   <div role="alert" class="alert">
     <p>
-      {{ 1 + (props.currentPage - 1) * NB_ELEMENT_PER_PAGE }}
-      to
-      {{ Math.min(props.currentPage * NB_ELEMENT_PER_PAGE, props.nbEntriesFound) }}
-      of {{ props.nbEntriesFound }} entries (filtered from {{ props.nbEntriesTotal }} total entries)
+      {{
+        $t('info.entries_range', [
+          1 + (props.currentPage - 1) * NB_ELEMENT_PER_PAGE,
+          Math.min(props.currentPage * NB_ELEMENT_PER_PAGE, props.nbEntriesFound)
+        ])
+      }}
+      {{ $t('info.entries_among', [props.nbEntriesFound]) }}
+      ({{ $t('info.entries_filtered', [props.nbEntriesTotal]) }})
     </p>
     <p>
-      <button class="btn btn-info" @click="downloadPdf">Download</button>
+      <button class="btn btn-info" @click="downloadPdf">{{ $t('info.download') }}</button>
     </p>
   </div>
 </template>

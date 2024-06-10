@@ -1,0 +1,20 @@
+{
+  "footer": {
+    "language_center": "Sprachenzentrum",
+    "nte": "NTE Zentrum",
+    "unifr": "Universität Freiburg"
+  },
+  "header": {
+    "language_center": "Sprachenzentrum",
+    "registration": "Anmeldung",
+    "self_access": "Selbstlernzentrum sprachen (SLZ)",
+    "title": "Suchen Lernmaterialen",
+    "what_language": "Welche Sprache möchten Sie lernen:"
+  },
+  "info": {
+    "download": "Herunterladen",
+    "entries_range": "{0} bis {1}",
+    "entries_among": "von {0} Einträgen",
+    "entries_filtered": "gefiltert von {0} Einträgen"
+  }
+}
