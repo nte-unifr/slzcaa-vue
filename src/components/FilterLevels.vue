@@ -34,5 +34,5 @@ watchEffect(() => {
 </script>
 
 <template>
-  <FilterCheckList title="Target levels" :items="items" @toggle="onChange" />
+  <FilterCheckList :title="$t('filter.target_levels')" :items="items" @toggle="onChange" />
 </template>

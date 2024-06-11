@@ -23,7 +23,7 @@ function onChange(e) {
 
 <template>
   <details class="collapse collapse-arrow bg-base-200 border-2 border-slate-200 my-1">
-    <summary class="collapse-title text-l font-medium">Year</summary>
+    <summary class="collapse-title text-l font-medium">{{ $t('filter.year') }}</summary>
     <div class="collapse-content bg-white">
       <div v-for="(item, index) in items" :key="index" class="form-control">
         <label class="label cursor-pointer">

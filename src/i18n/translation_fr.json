@@ -16,5 +16,22 @@
     "entries_range": "{0} à {1}",
     "entries_among": "sur {0} éléments",
     "entries_filtered": "filtré de {0} éléments au total"
+  },
+  "filter": {
+    "select_all": "Tout sélectionner",
+    "unselect_all": "Tout désélectionner",
+    "target_levels": "Niveaux cibles",
+    "skills": "Compétences",
+    "trick": "Astuce! TODO",
+    "subject_everyday": "Thématiques (Quotidien)",
+    "subject_pro": "Thématiques (Études + Profession)",
+    "source_languages": "Langues de départ",
+    "media": "Médias",
+    "year": "Année",
+    "modalities": "Modalités",
+    "only_preinstalled": "Uniquement le matériel préinstallé sur les PC",
+    "only_loanable": "Uniquement le matériel prêtable",
+    "displayed_columns": "Colonnes affichées",
+    "search": "Recherche"
   }
 }

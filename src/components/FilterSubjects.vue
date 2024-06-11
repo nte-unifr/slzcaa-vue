@@ -46,9 +46,9 @@ watchEffect(() => {
 
 <template>
   <FilterCheckList
-    title="Subject Areas (Everyday)"
+    :title="$t('filter.subject_everyday')"
     :items="itemsEveryday"
     @toggle="onChangeEveryday"
   />
-  <FilterCheckList title="Subject Areas (Professional)" :items="itemsPro" @toggle="onChangePro" />
+  <FilterCheckList :title="$t('filter.subject_pro')" :items="itemsPro" @toggle="onChangePro" />
 </template>

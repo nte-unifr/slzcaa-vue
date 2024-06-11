@@ -16,5 +16,22 @@
     "entries_range": "{0} to {1}",
     "entries_among": "of {0} entries",
     "entries_filtered": "filtered from {0} total entries"
+  },
+  "filter": {
+    "select_all": "Select all",
+    "unselect_all": "Unselect all",
+    "target_levels": "Target levels",
+    "skills": "Skills",
+    "trick": "TODO",
+    "subject_everyday": "Subject Areas (Everyday)",
+    "subject_pro": "Subject Areas (Studies + Profession)",
+    "source_languages": "Source Languages",
+    "media": "Media",
+    "year": "Year",
+    "modalities": "Modalities",
+    "only_preinstalled": "Only material preinstalled on the PCs",
+    "only_loanable": "Only loanable material",
+    "displayed_columns": "Displayed columns",
+    "search": "Search"
   }
 }

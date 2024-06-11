@@ -34,5 +34,5 @@ watchEffect(() => {
 </script>
 
 <template>
-  <FilterCheckList title="Source Languages" :items="items" @toggle="onChange" />
+  <FilterCheckList :title="$t('filter.source_languages')" :items="items" @toggle="onChange" />
 </template>

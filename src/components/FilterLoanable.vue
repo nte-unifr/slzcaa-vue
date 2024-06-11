@@ -21,5 +21,5 @@ watchEffect(() => {
 </script>
 
 <template>
-  <FilterBool title="Only loanable material" :checked="checked" @toggle="onChange" />
+  <FilterBool title="filter.only_loanable" :checked="checked" @toggle="onChange" />
 </template>

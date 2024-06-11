@@ -16,5 +16,22 @@
     "entries_range": "{0} bis {1}",
     "entries_among": "von {0} Einträgen",
     "entries_filtered": "gefiltert von {0} Einträgen"
+  },
+  "filter": {
+    "select_all": "Alle wählen",
+    "unselect_all": "Alle löschen",
+    "target_levels": "Zielstufen",
+    "skills": "Fertigkeiten",
+    "trick": "Tipp! TODO",
+    "subject_everyday": "Themen (Alltag)",
+    "subject_pro": "Themen (Studium + Beruf)",
+    "source_languages": "Ausgangssprachen ",
+    "media": "Medium",
+    "year": "Jahr",
+    "modalities": "Lernweise",
+    "only_preinstalled": "Nur auf den PCs vorinstalliertes Material",
+    "only_loanable": "Nur ausleihbares Material",
+    "displayed_columns": "Angezeigten Spalten",
+    "search": "Suche"
   }
 }

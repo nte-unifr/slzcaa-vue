@@ -21,5 +21,5 @@ watchEffect(() => {
 </script>
 
 <template>
-  <FilterBool title="Only material preinstalled on the PCs" :checked="checked" @toggle="onChange" />
+  <FilterBool title="filter.only_preinstalled" :checked="checked" @toggle="onChange" />
 </template>

@@ -31,5 +31,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <FilterCheckList title="Displayed columns" :items="items" @toggle="onChange" />
+  <FilterCheckList :title="$t('filter.displayed_columns')" :items="items" @toggle="onChange" />
 </template>

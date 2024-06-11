@@ -22,7 +22,7 @@ function onChange() {
     <div class="collapse-title text-l font-medium">
       <div class="form-control">
         <label class="label cursor-pointer">
-          <span class="label-text">{{ props.title }}</span>
+          <span class="label-text">{{ $t(props.title) }}</span>
           <input
             type="checkbox"
             class="checkbox checkbox-primary"

@@ -32,5 +32,5 @@ watchEffect(() => {
 </script>
 
 <template>
-  <FilterCheckList title="Modalities" :items="items" @toggle="onChange" />
+  <FilterCheckList :title="$t('filter.modalities')" :items="items" @toggle="onChange" />
 </template>

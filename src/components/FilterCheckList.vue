@@ -33,8 +33,10 @@ function onSelectAll() {
     <div class="collapse-content bg-white">
       <p class="text-center">
         <button class="btn btn-xs" v-on:click="onSelectAll">
-          <span v-if="props.items.every((item) => item.checked)">Unselect all</span>
-          <span v-else>Select all</span>
+          <span v-if="props.items.every((item) => item.checked)">{{
+            $t('filter.unselect_all')
+          }}</span>
+          <span v-else>{{ $t('filter.select_all') }}</span>
         </button>
       </p>
       <ul>
