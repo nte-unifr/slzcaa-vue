@@ -1,17 +1,15 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
+import levelsEn from '../ressources/levels_en.json'
 import FilterCheckList from './FilterCheckList.vue'
 
 const emit = defineEmits(['toggle'])
 
-const items = ref([
-  { key: 'A1', label: 'A1', checked: true },
-  { key: 'A2', label: 'A2', checked: true },
-  { key: 'B1', label: 'B1', checked: true },
-  { key: 'B2', label: 'B2', checked: true },
-  { key: 'C1', label: 'C1', checked: true },
-  { key: 'C2', label: 'C2', checked: true }
-])
+const items = ref(
+  Object.keys(levelsEn).map((k) => {
+    return { key: k, checked: true }
+  })
+)
 
 function onChange(param) {
   const index = items.value.findIndex((e) => e.key === param)

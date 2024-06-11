@@ -42,7 +42,7 @@ function onSelectAll() {
       <ul>
         <li v-for="(item, index) in props.items" :key="index" class="border-t-2">
           <label class="label cursor-pointer">
-            <span class="label-text">{{ item.label }}</span>
+            <span class="label-text">{{ $t(item.key) }}</span>
             <input
               type="checkbox"
               class="checkbox checkbox-xs"

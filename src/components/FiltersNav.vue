@@ -101,8 +101,7 @@ watchEffect(() => {
   <FilterSkills @toggle="handleSkills" />
   <div role="alert" class="alert">
     <span
-      ><b>Trick!</b> Different combinations of skills and target levels (e.g. Reading B2 + Speaking
-      A2) require separate search operations.</span
+      ><b>{{ $t('filter.trick_title') }}</b> {{ $t('filter.trick_desc') }}</span
     >
   </div>
   <FilterSubjects @toggle="handleSubjects" />

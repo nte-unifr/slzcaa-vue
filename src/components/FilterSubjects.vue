@@ -7,13 +7,13 @@ import subjectsProEn from '../ressources/label_subjects_pro_en.json'
 const emit = defineEmits(['toggle'])
 
 const itemsEveryday = ref(
-  Object.entries(subjectsEverydayEn).map((r) => {
-    return { key: r[0], label: r[1], checked: true }
+  Object.keys(subjectsEverydayEn).map((k) => {
+    return { key: k, checked: true }
   })
 )
 const itemsPro = ref(
-  Object.entries(subjectsProEn).map((r) => {
-    return { key: r[0], label: r[1], checked: true }
+  Object.keys(subjectsProEn).map((k) => {
+    return { key: k, checked: true }
   })
 )
 

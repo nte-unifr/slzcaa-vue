@@ -1,4 +1,28 @@
 import { createI18n } from 'vue-i18n'
+import columnsDe from '../ressources/columns_de.json'
+import columnsEn from '../ressources/columns_en.json'
+import columnsFr from '../ressources/columns_fr.json'
+import langSrcDe from '../ressources/label_lang_de.json'
+import langSrcEn from '../ressources/label_lang_en.json'
+import langSrcFr from '../ressources/label_lang_fr.json'
+import levelsDe from '../ressources/levels_de.json'
+import levelsEn from '../ressources/levels_en.json'
+import levelsFr from '../ressources/levels_fr.json'
+import mediaDe from '../ressources/media_de.json'
+import mediaEn from '../ressources/media_en.json'
+import mediaFr from '../ressources/media_fr.json'
+import modalitiesDe from '../ressources/modalities_de.json'
+import modalitiesEn from '../ressources/modalities_en.json'
+import modalitiesFr from '../ressources/modalities_fr.json'
+import skillsDe from '../ressources/skills_de.json'
+import skillsEn from '../ressources/skills_en.json'
+import skillsFr from '../ressources/skills_fr.json'
+import subjectsEverydayDe from '../ressources/label_subjects_everyday_de.json'
+import subjectsEverydayEn from '../ressources/label_subjects_everyday_en.json'
+import subjectsEverydayFr from '../ressources/label_subjects_everyday_fr.json'
+import subjectsProDe from '../ressources/label_subjects_pro_de.json'
+import subjectsProEn from '../ressources/label_subjects_pro_en.json'
+import subjectsProFr from '../ressources/label_subjects_pro_fr.json'
 import translationDe from '../i18n/translation_de.json'
 import translationEn from '../i18n/translation_en.json'
 import translationFr from '../i18n/translation_fr.json'
@@ -11,8 +35,38 @@ export const i18n = createI18n({
   locale: locale || preferred || 'de',
   fallbackLocale: 'en',
   messages: {
-    de: { ...translationDe },
-    en: { ...translationEn },
-    fr: { ...translationFr }
+    de: {
+      ...columnsDe,
+      ...langSrcDe,
+      ...levelsDe,
+      ...mediaDe,
+      ...modalitiesDe,
+      ...skillsDe,
+      ...subjectsEverydayDe,
+      ...subjectsProDe,
+      ...translationDe
+    },
+    en: {
+      ...columnsEn,
+      ...langSrcEn,
+      ...levelsEn,
+      ...mediaEn,
+      ...modalitiesEn,
+      ...skillsEn,
+      ...subjectsEverydayEn,
+      ...subjectsProEn,
+      ...translationEn
+    },
+    fr: {
+      ...columnsFr,
+      ...langSrcFr,
+      ...levelsFr,
+      ...mediaFr,
+      ...modalitiesFr,
+      ...skillsFr,
+      ...subjectsEverydayFr,
+      ...subjectsProFr,
+      ...translationFr
+    }
   }
 })

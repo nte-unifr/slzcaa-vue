@@ -6,8 +6,8 @@ import FilterCheckList from './FilterCheckList.vue'
 const emit = defineEmits(['toggle'])
 
 const items = ref(
-  Object.entries(langEn).map((r) => {
-    return { key: r[0], label: r[1], checked: true }
+  Object.keys(langEn).map((k) => {
+    return { key: k, checked: true }
   })
 )
 
