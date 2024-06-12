@@ -20,6 +20,8 @@
   "filter": {
     "select_all": "Alle wählen",
     "unselect_all": "Alle löschen",
+    "yes": "Ja",
+    "no": "Nein",
     "target_levels": "Zielstufen",
     "skills": "Fertigkeiten",
     "trick_title": "Tipp!",
@@ -34,5 +36,12 @@
     "only_loanable": "Nur ausleihbares Material",
     "displayed_columns": "Angezeigten Spalten",
     "search": "Suche"
+  },
+  "table": {
+    "title": "Titel",
+    "description": "Beschreibung",
+    "subject_areas": "Themen",
+    "author": "Autoren",
+    "loanable": "Ausleihbar?"
   }
 }

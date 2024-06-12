@@ -1,4 +1,6 @@
 <script setup>
+import { fmtBoolean, fmtLanguage, fmtSplitAndLower, fmtSubject } from '../helper.js'
+
 const props = defineProps({
   cols: {
     type: Set,
@@ -29,18 +31,18 @@ function onChange(e) {
       <thead>
         <tr>
           <th></th>
-          <th v-show="props.cols.has('titel')">Title</th>
-          <th v-show="props.cols.has('sprachniveau')">Target Levels</th>
-          <th v-show="props.cols.has('fertigkeit')">Skills</th>
-          <th v-show="props.cols.has('fachbezug')">Subject Areas</th>
-          <th v-show="props.cols.has('ausgangssprache')">Source languages</th>
-          <th v-show="props.cols.has('medium')">Media</th>
-          <th v-show="props.cols.has('jahr')">Year</th>
-          <th v-show="props.cols.has('asl')">Modalities</th>
-          <th v-show="props.cols.has('autor')">Author</th>
+          <th v-show="props.cols.has('titel')">{{ $t('table.title') }}</th>
+          <th v-show="props.cols.has('sprachniveau')">{{ $t('filter.target_levels') }}</th>
+          <th v-show="props.cols.has('fertigkeit')">{{ $t('filter.skills') }}</th>
+          <th v-show="props.cols.has('fachbezug')">{{ $t('table.subject_areas') }}</th>
+          <th v-show="props.cols.has('ausgangssprache')">{{ $t('filter.source_languages') }}</th>
+          <th v-show="props.cols.has('medium')">{{ $t('filter.media') }}</th>
+          <th v-show="props.cols.has('jahr')">{{ $t('filter.year') }}</th>
+          <th v-show="props.cols.has('asl')">{{ $t('filter.modalities') }}</th>
+          <th v-show="props.cols.has('autor')">{{ $t('table.author') }}</th>
           <th v-show="props.cols.has('code')">Code</th>
-          <th v-show="props.cols.has('ble')">Loanable</th>
-          <th v-show="props.cols.has('kommentar')">Description</th>
+          <th v-show="props.cols.has('ble')">{{ $t('table.loanable') }}</th>
+          <th v-show="props.cols.has('kommentar')">{{ $t('table.description') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -60,17 +62,29 @@ function onChange(e) {
               {{ level }}
             </span>
           </td>
-          <td v-show="props.cols.has('fertigkeit')">{{ row.fertigkeit }}</td>
-          <td v-show="props.cols.has('fachbezug')">{{ row.fachbezug }}</td>
-          <td v-show="props.cols.has('ausgangssprache')">{{ row.ausgangssprache }}</td>
-          <td v-show="props.cols.has('medium')">{{ row.medium }}</td>
+          <td v-show="props.cols.has('fertigkeit')">
+            {{ fmtSplitAndLower(row.fertigkeit) }}
+          </td>
+          <td v-show="props.cols.has('fachbezug')">
+            {{ fmtSubject(row.fachbezug) }}
+          </td>
+          <td v-show="props.cols.has('ausgangssprache')">
+            {{ fmtLanguage(row.ausgangssprache) }}
+          </td>
+          <td v-show="props.cols.has('medium')">
+            {{ fmtSplitAndLower(row.medium) }}
+          </td>
           <td v-show="props.cols.has('jahr')">{{ row.jahr }}</td>
-          <td v-show="props.cols.has('asl')">{{ row.asl }}</td>
+          <td v-show="props.cols.has('asl')">
+            {{ fmtSplitAndLower(row.asl) }}
+          </td>
           <td v-show="props.cols.has('autor')">{{ row.autor }}</td>
           <td v-show="props.cols.has('code')">
             {{ displayCode(row) }}
           </td>
-          <td v-show="props.cols.has('ble')">{{ row.ausleihe_ble }}</td>
+          <td v-show="props.cols.has('ble')">
+            {{ fmtBoolean(row.ausleihe_ble) }}
+          </td>
           <td v-show="props.cols.has('kommentar')">{{ row.kommentar }}</td>
         </tr>
       </tbody>

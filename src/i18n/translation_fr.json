@@ -20,6 +20,8 @@
   "filter": {
     "select_all": "Tout sélectionner",
     "unselect_all": "Tout désélectionner",
+    "yes": "Oui",
+    "no": "Non",
     "target_levels": "Niveaux cibles",
     "skills": "Compétences",
     "trick_title": "Astuce!",
@@ -34,5 +36,12 @@
     "only_loanable": "Uniquement le matériel prêtable",
     "displayed_columns": "Colonnes affichées",
     "search": "Recherche"
+  },
+  "table": {
+    "title": "Titre",
+    "description": "Description",
+    "subject_areas": "Thématiques",
+    "author": "Auteur",
+    "loanable": "Prêtable ?"
   }
 }

@@ -2,6 +2,9 @@ import { createI18n } from 'vue-i18n'
 import columnsDe from '../ressources/columns_de.json'
 import columnsEn from '../ressources/columns_en.json'
 import columnsFr from '../ressources/columns_fr.json'
+import languagesDe from '../ressources/languages_de.json'
+import languagesEn from '../ressources/languages_en.json'
+import languagesFr from '../ressources/languages_fr.json'
 import langSrcDe from '../ressources/label_lang_de.json'
 import langSrcEn from '../ressources/label_lang_en.json'
 import langSrcFr from '../ressources/label_lang_fr.json'
@@ -17,6 +20,9 @@ import modalitiesFr from '../ressources/modalities_fr.json'
 import skillsDe from '../ressources/skills_de.json'
 import skillsEn from '../ressources/skills_en.json'
 import skillsFr from '../ressources/skills_fr.json'
+import subjectsDe from '../ressources/subjects_de.json'
+import subjectsEn from '../ressources/subjects_en.json'
+import subjectsFr from '../ressources/subjects_fr.json'
 import subjectsEverydayDe from '../ressources/label_subjects_everyday_de.json'
 import subjectsEverydayEn from '../ressources/label_subjects_everyday_en.json'
 import subjectsEverydayFr from '../ressources/label_subjects_everyday_fr.json'
@@ -37,33 +43,39 @@ export const i18n = createI18n({
   messages: {
     de: {
       ...columnsDe,
+      ...languagesDe,
       ...langSrcDe,
       ...levelsDe,
       ...mediaDe,
       ...modalitiesDe,
       ...skillsDe,
+      ...subjectsDe,
       ...subjectsEverydayDe,
       ...subjectsProDe,
       ...translationDe
     },
     en: {
       ...columnsEn,
+      ...languagesEn,
       ...langSrcEn,
       ...levelsEn,
       ...mediaEn,
       ...modalitiesEn,
       ...skillsEn,
+      ...subjectsEn,
       ...subjectsEverydayEn,
       ...subjectsProEn,
       ...translationEn
     },
     fr: {
       ...columnsFr,
+      ...languagesFr,
       ...langSrcFr,
       ...levelsFr,
       ...mediaFr,
       ...modalitiesFr,
       ...skillsFr,
+      ...subjectsFr,
       ...subjectsEverydayFr,
       ...subjectsProFr,
       ...translationFr

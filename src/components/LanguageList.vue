@@ -14,9 +14,9 @@ function onChange(e) {
   <p class="text-center my-4">
     {{ $t('header.what_language') }}
     <select class="select select-primary w-full max-w-xs" v-on:change="onChange">
-      <option value="EFL">{{ languages['EFL'] }}</option>
+      <option value="EFL">{{ $t('EFL') }}</option>
       <option v-for="(language, key) in languages" :key="key" :value="key">
-        {{ language }}
+        {{ $t(key) }}
       </option>
     </select>
   </p>

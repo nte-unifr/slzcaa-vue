@@ -20,6 +20,8 @@
   "filter": {
     "select_all": "Select all",
     "unselect_all": "Unselect all",
+    "yes": "Yes",
+    "no": "No",
     "target_levels": "Target levels",
     "skills": "Skills",
     "trick_title": "Tipp!",
@@ -34,5 +36,12 @@
     "only_loanable": "Only loanable material",
     "displayed_columns": "Displayed columns",
     "search": "Search"
+  },
+  "table": {
+    "title": "Title",
+    "description": "Description",
+    "subject_areas": "Subject Areas",
+    "author": "Author",
+    "loanable": "Loanable?"
   }
 }
