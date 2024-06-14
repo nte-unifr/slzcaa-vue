@@ -15,7 +15,8 @@
     "download": "Herunterladen",
     "entries_range": "{0} bis {1}",
     "entries_among": "von {0} Einträgen",
-    "entries_filtered": "gefiltert von {0} Einträgen"
+    "entries_filtered": "gefiltert von {0} Einträgen",
+    "reset": "Zurücksetzen"
   },
   "filter": {
     "select_all": "Alle wählen",

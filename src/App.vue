@@ -3,6 +3,7 @@ import { ref, watch } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
+import { i18n } from './i18n'
 import LanguageList from './components/LanguageList.vue'
 import PageFooter from './components/PageFooter.vue'
 import PageHeader from './components/PageHeader.vue'
@@ -90,18 +91,18 @@ function downloadPdf() {
         table: {
           body: [
             [
-              'Title',
-              'Level',
-              'Skills',
-              'Subject',
-              'Source',
-              'Media',
-              'Year',
-              'Modalities',
-              'Author',
-              'Code',
-              'Loanable',
-              'Description'
+              i18n.global.t('table.title'),
+              i18n.global.t('filter.target_levels'),
+              i18n.global.t('filter.skills'),
+              i18n.global.t('table.subject_areas'),
+              i18n.global.t('filter.source_languages'),
+              i18n.global.t('filter.media'),
+              i18n.global.t('filter.year'),
+              i18n.global.t('filter.modalities'),
+              i18n.global.t('table.author'),
+              'Code', // TODO
+              i18n.global.t('table.loanable'),
+              i18n.global.t('table.description')
             ],
             ...Array.from(itemsSelected.value).map((item) => {
               return [
@@ -132,6 +133,10 @@ function filterLanguage(lang) {
   filterLang.value = lang
 }
 
+function resetSelection() {
+  itemsSelected.value.clear()
+}
+
 function selectRow(id, isChecked) {
   const item = dataTable.value.data.find((item) => item.id == id)
   if (isChecked) {
@@ -159,11 +164,18 @@ function selectRow(id, isChecked) {
           :currentPage="page"
           :nbEntriesFound="nbRowsFound"
           :nbEntriesTotal="nbRowsInDatabase"
+          :nbSelectedElements="itemsSelected.size"
           @download-pdf="downloadPdf"
+          @reset="resetSelection"
         />
         <div v-if="errorTable">Oops! Error encountered: {{ errorTable.message }}</div>
         <div v-else-if="dataTable">
-          <SimpleTable :cols="columnsChecked" :rows="dataTable.data" @select-row="selectRow" />
+          <SimpleTable
+            :cols="columnsChecked"
+            :rows="dataTable.data"
+            :selectedRows="new Set([...itemsSelected].map((x) => x.id))"
+            @select-row="selectRow"
+          />
           <TablePagination
             :page="page"
             :nbPage="Math.ceil(nbRowsFound / NB_ELEMENT_PER_PAGE)"

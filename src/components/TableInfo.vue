@@ -13,13 +13,21 @@ const props = defineProps({
   nbEntriesTotal: {
     type: Number,
     required: true
+  },
+  nbSelectedElements: {
+    type: Number,
+    required: true
   }
 })
 
-const emit = defineEmits(['downloadPdf'])
+const emit = defineEmits(['downloadPdf', 'reset'])
 
 function downloadPdf() {
   emit('downloadPdf')
+}
+
+function reset() {
+  emit('reset')
 }
 </script>
 
@@ -35,8 +43,15 @@ function downloadPdf() {
       {{ $t('info.entries_among', [props.nbEntriesFound]) }}
       ({{ $t('info.entries_filtered', [props.nbEntriesTotal]) }})
     </p>
-    <p>
-      <button class="btn btn-info" @click="downloadPdf">{{ $t('info.download') }}</button>
+    <p v-if="props.nbSelectedElements > 0">
+      <button class="btn btn-neutral" @click="reset">
+        {{ $t('info.reset') }}
+      </button>
+      {{ ' ' }}
+      <button class="btn btn-info" @click="downloadPdf">
+        {{ $t('info.download') }}
+        ({{ props.nbSelectedElements }})
+      </button>
     </p>
   </div>
 </template>

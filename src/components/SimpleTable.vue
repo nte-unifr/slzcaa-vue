@@ -9,6 +9,10 @@ const props = defineProps({
   rows: {
     type: Array,
     required: true
+  },
+  selectedRows: {
+    type: Set,
+    required: true
   }
 })
 
@@ -49,7 +53,13 @@ function onChange(e) {
         <tr v-for="(row, index) in props.rows" :key="index">
           <th>
             <label>
-              <input type="checkbox" class="checkbox" :value="row.id" v-on:change="onChange" />
+              <input
+                type="checkbox"
+                class="checkbox"
+                :value="row.id"
+                :checked="props.selectedRows.has(row.id)"
+                v-on:change="onChange"
+              />
             </label>
           </th>
           <td v-show="props.cols.has('titel')">{{ row.titel }}</td>
