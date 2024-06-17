@@ -10,6 +10,7 @@ export default defineConfig({
     vue(),
     vueJsx(),
   ],
+  base: '/slz-caa',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
