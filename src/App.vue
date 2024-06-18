@@ -2,7 +2,6 @@
 import { ref, watch } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import pdfMake from 'pdfmake/build/pdfmake'
-import * as pdfFonts from 'pdfmake/build/vfs_fonts'
 import { i18n } from './i18n'
 import LanguageList from './components/LanguageList.vue'
 import PageFooter from './components/PageFooter.vue'
@@ -13,6 +12,7 @@ import TableInfo from './components/TableInfo.vue'
 import TablePagination from './components/TablePagination.vue'
 import { NB_ELEMENT_PER_PAGE } from './config.js'
 import { useFetch } from './fetch.js'
+import { fonts } from './fonts.js'
 
 const BASE_URL = 'https://eddb.unifr.ch/slzcaa-admin/items/materials'
 const DEBOUNCE_TIME = 512
@@ -125,7 +125,7 @@ function downloadPdf() {
       }
     ]
   }
-  pdfMake.vfs = pdfFonts.pdfMake.vfs
+  pdfMake.fonts = fonts
   pdfMake.createPdf(docDefinition).open()
 }
 
