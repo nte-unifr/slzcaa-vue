@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import pdfMake from 'pdfmake/build/pdfmake'
-import pdfFonts from 'pdfmake/build/vfs_fonts'
+import * as pdfFonts from 'pdfmake/build/vfs_fonts'
 import { i18n } from './i18n'
 import LanguageList from './components/LanguageList.vue'
 import PageFooter from './components/PageFooter.vue'
