@@ -81,14 +81,21 @@ function selectRow(id) {
 </script>
 
 <template>
-  <TableInfo
-    :currentPage="page"
-    :nbEntriesFound="nbRowsFound"
-    :nbEntriesTotal="nbRowsInDatabase"
-    :nbSelectedElements="props.selectedRows.size"
-    @download-pdf="downloadPdf"
-    @reset="resetSelection"
-  />
+  <div v-if="errorCountFound">Oops! Error encountered: {{ errorCountFound.message }}</div>
+  <div v-if="errorCountTotal">Oops! Error encountered: {{ errorCountTotal.message }}</div>
+  <div v-else-if="dataCountFound && dataCountTotal">
+    <TableInfo
+      :currentPage="page"
+      :nbEntriesFound="nbRowsFound"
+      :nbEntriesTotal="nbRowsInDatabase"
+      :nbSelectedElements="props.selectedRows.size"
+      @download-pdf="downloadPdf"
+      @reset="resetSelection"
+    />
+  </div>
+  <div v-else>
+    <div class="skeleton h-16 w-full"></div>
+  </div>
 
   <div v-if="errorTable">Oops! Error encountered: {{ errorTable.message }}</div>
   <div v-else-if="dataTable">
