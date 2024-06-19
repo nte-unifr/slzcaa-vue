@@ -24,8 +24,7 @@ function displayCode(row) {
 
 function onChange(e) {
   const id = e.target.value
-  const isChecked = e.target.checked
-  emit('selectRow', id, isChecked)
+  emit('selectRow', id)
 }
 </script>
 
