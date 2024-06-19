@@ -1,4 +1,5 @@
 import pdfMake from 'pdfmake/build/pdfmake'
+import { fmtBoolean, fmtCode, fmtLanguage, fmtSplitAndLower, fmtSubject } from './helper.js'
 import { fonts } from './fonts.js'
 import { i18n } from './i18n'
 
@@ -31,15 +32,15 @@ export default function downloadPdf(rows) {
               return [
                 item.titel,
                 item.sprachniveau,
-                item.fertigkeit,
-                item.fachbezug,
-                item.ausgangssprache,
-                item.medium,
+                fmtSplitAndLower(item.fertigkeit),
+                fmtSubject(item.fachbezug),
+                fmtLanguage(item.ausgangssprache),
+                fmtSplitAndLower(item.medium),
                 item.jahr,
-                item.asl,
+                fmtSplitAndLower(item.asl),
                 item.autor,
-                'TODO', // item.code,
-                item.ausleihe_ble,
+                fmtCode(item),
+                fmtBoolean(item.ausleihe_ble),
                 item.kommentar
               ]
             })

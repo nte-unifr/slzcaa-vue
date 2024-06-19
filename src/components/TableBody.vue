@@ -1,5 +1,5 @@
 <script setup>
-import { fmtBoolean, fmtLanguage, fmtSplitAndLower, fmtSubject } from '../helper.js'
+import { fmtBoolean, fmtCode, fmtLanguage, fmtSplitAndLower, fmtSubject } from '../helper.js'
 
 const props = defineProps({
   cols: {
@@ -17,10 +17,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['selectRow'])
-
-function displayCode(row) {
-  return [row.bereich, row.spr, row.sb, row.sm2].filter((element) => element).join(' | ')
-}
 
 function onChange(e) {
   const id = e.target.value
@@ -89,7 +85,7 @@ function onChange(e) {
           </td>
           <td v-show="props.cols.has('autor')">{{ row.autor }}</td>
           <td v-show="props.cols.has('code')">
-            {{ displayCode(row) }}
+            {{ fmtCode(row) }}
           </td>
           <td v-show="props.cols.has('ble')">
             {{ fmtBoolean(row.ausleihe_ble) }}

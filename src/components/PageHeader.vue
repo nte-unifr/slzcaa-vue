@@ -55,8 +55,14 @@ function switchLanguage(lang) {
 
   <div className="text-sm breadcrumbs mx-4 font-bold">
     <ul>
-      <li>{{ $t('header.language_center') }}</li>
-      <li>{{ $t('header.self_access') }}</li>
+      <li>
+        <a href="https://www.unifr.ch/centredelangues">{{ $t('header.language_center') }}</a>
+      </li>
+      <li>
+        <a href="https://www3.unifr.ch/centredelangues/fr/autoapprentissage/">{{
+          $t('header.self_access')
+        }}</a>
+      </li>
     </ul>
   </div>
 

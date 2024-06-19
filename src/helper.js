@@ -21,6 +21,10 @@ export function fmtBoolean(bool) {
   return i18n.global.t(`filter.${yesNo}`)
 }
 
+export function fmtCode(row) {
+  return [row.bereich, row.spr, row.sb, row.sm2].filter((element) => element).join(' | ')
+}
+
 export function fmtLanguage(langInGerman) {
   if (!languageLookup.has(langInGerman)) {
     return langInGerman
