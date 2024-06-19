@@ -41,9 +41,12 @@ const { data: dataCountFound, error: errorCountFound } = useFetch(urlNbFound)
 const { data: dataCountTotal, error: errorCountTotal } = useFetch(urlNbTotal)
 const { data: dataTable, error: errorTable } = useFetch(urlDataTable)
 
-watch(props, () => {
-  page.value = 1
-})
+watch(
+  () => props.filterParam,
+  () => {
+    page.value = 1
+  }
+)
 
 watch(dataCountFound, () => {
   if (dataCountFound.value?.data[0]) {

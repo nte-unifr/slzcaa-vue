@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import { useDebounceFn } from '@vueuse/core'
 import pdfMake from 'pdfmake/build/pdfmake'
 import { i18n } from './i18n'
 import LanguageList from './components/LanguageList.vue'
@@ -7,21 +8,24 @@ import PageFooter from './components/PageFooter.vue'
 import PageHeader from './components/PageHeader.vue'
 import FiltersNav from './components/FiltersNav.vue'
 import TableWrap from './components/TableWrap.vue'
+import { DEBOUNCE_MAX_WAIT, DEBOUNCE_TIME } from './config.js'
 import { fonts } from './fonts.js'
-
-const DEBOUNCE_TIME = 512
 
 const itemsSelected = ref(new Set([]))
 const columnsChecked = ref(new Set([]))
 const filterLang = ref('EFL')
 const filterParam = ref('')
 
+const changeFilter = useDebounceFn(
+  (param) => {
+    filterParam.value = param
+  },
+  DEBOUNCE_TIME,
+  { maxWait: DEBOUNCE_MAX_WAIT }
+)
+
 function changeColumns(param) {
   columnsChecked.value = param
-}
-
-function changeFilter(param) {
-  filterParam.value = param
 }
 
 function downloadPdf() {
