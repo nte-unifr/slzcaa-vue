@@ -26,7 +26,7 @@ function onChange(e) {
 
 <template>
   <div class="overflow-x-auto">
-    <table class="table">
+    <table class="table table-zebra">
       <thead>
         <tr>
           <th></th>

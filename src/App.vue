@@ -51,15 +51,15 @@ function selectRow(row, isChecked) {
   <PageHeader />
   <main class="mb-8 mx-4">
     <LanguageList @on-change="filterLanguage" />
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr]">
-      <div>
+    <div class="md:flex gap-8">
+      <div class="md:w-1/5">
         <FiltersNav
           :language="filterLang"
           @columns-checked="changeColumns"
           @filter="changeFilter"
         />
       </div>
-      <div v-if="filterParam">
+      <div class="md:w-4/5" v-if="filterParam">
         <TableWrap
           :columnsChecked="columnsChecked"
           :filterParam="filterParam"
