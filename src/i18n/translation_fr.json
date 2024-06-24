@@ -19,6 +19,7 @@
     "reset": "Réinitialiser"
   },
   "filter": {
+    "reset": "Réinitialiser tous les filtres",
     "select_all": "Tout sélectionner",
     "unselect_all": "Tout désélectionner",
     "yes": "Oui",

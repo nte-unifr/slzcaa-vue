@@ -1,10 +1,12 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
+import { useEventBus } from '@vueuse/core'
 import FilterCheckList from './FilterCheckList.vue'
 import subjectsEverydayEn from '../ressources/label_subjects_everyday_en.json'
 import subjectsProEn from '../ressources/label_subjects_pro_en.json'
 
 const emit = defineEmits(['toggle'])
+const bus = useEventBus('reset')
 
 const itemsEveryday = ref(
   Object.keys(subjectsEverydayEn).map((k) => {
@@ -16,6 +18,11 @@ const itemsPro = ref(
     return { key: k, checked: true }
   })
 )
+
+bus.on(() => {
+  itemsEveryday.value.forEach((item) => (item.checked = true))
+  itemsPro.value.forEach((item) => (item.checked = true))
+})
 
 function onChangeEveryday(param) {
   const index = itemsEveryday.value.findIndex((e) => e.key === param)

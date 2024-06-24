@@ -19,6 +19,7 @@
     "reset": "Zurücksetzen"
   },
   "filter": {
+    "reset": "Alle Filter zurücksetzen",
     "select_all": "Alle wählen",
     "unselect_all": "Alle löschen",
     "yes": "Ja",

@@ -1,10 +1,16 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
+import { useEventBus } from '@vueuse/core'
 import FilterBool from './FilterBool.vue'
 
 const emit = defineEmits(['toggle'])
+const bus = useEventBus('reset')
 
 const checked = ref(false)
+
+bus.on(() => {
+  checked.value = false
+})
 
 function onChange() {
   checked.value = !checked.value

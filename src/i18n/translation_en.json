@@ -19,6 +19,7 @@
     "reset": "Reset"
   },
   "filter": {
+    "reset": "Reset all filters",
     "select_all": "Select all",
     "unselect_all": "Unselect all",
     "yes": "Yes",

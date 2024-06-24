@@ -1,15 +1,21 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
+import { useEventBus } from '@vueuse/core'
 import skillsEn from '../ressources/skills_en.json'
 import FilterCheckList from './FilterCheckList.vue'
 
 const emit = defineEmits(['toggle'])
+const bus = useEventBus('reset')
 
 const items = ref(
   Object.keys(skillsEn).map((k) => {
     return { key: k, checked: true }
   })
 )
+
+bus.on(() => {
+  items.value.forEach((item) => (item.checked = true))
+})
 
 function onChange(param) {
   const index = items.value.findIndex((e) => e.key === param)

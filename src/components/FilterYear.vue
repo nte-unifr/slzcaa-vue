@@ -1,7 +1,9 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
+import { useEventBus } from '@vueuse/core'
 
 const emit = defineEmits(['changeYear'])
+const bus = useEventBus('reset')
 
 const items = ref([
   { key: '', label: 'All', checked: true },
@@ -10,15 +12,25 @@ const items = ref([
   { key: '2010', label: '2010', checked: false }
 ])
 
+bus.on(() => {
+  items.value.forEach((item, i) => (item.checked = i === 0))
+})
+
 function onChange(e) {
   const key = e.target.value
-  if (key) {
-    const param = JSON.stringify({ jahr: { _gte: key } })
+  items.value.forEach((item) => (item.checked = item.key === key))
+}
+
+watchEffect(() => {
+  const selected = items.value.find((item) => item.checked)
+  const paramRequired = selected.key !== ''
+  if (paramRequired) {
+    const param = JSON.stringify({ jahr: { _gte: selected.key } })
     emit('changeYear', param)
   } else {
     emit('changeYear', '')
   }
-}
+})
 </script>
 
 <template>

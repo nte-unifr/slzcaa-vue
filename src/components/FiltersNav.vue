@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
+import { useEventBus } from '@vueuse/core'
 import FilterColumns from './FilterColumns.vue'
 import FilterLang from './FilterLang.vue'
 import FilterLevels from './FilterLevels.vue'
@@ -20,6 +21,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['columnsChecked', 'filter'])
+const bus = useEventBus('reset')
 
 const filterLangSrc = ref('')
 const filterLevels = ref('')
@@ -58,6 +60,10 @@ function handleModalities(param) {
 
 function handlePreinstalled(param) {
   filterPreinstalled.value = param
+}
+
+function handleReset() {
+  bus.emit('Reset event')
 }
 
 function handleSearch(param) {
@@ -111,6 +117,9 @@ watchEffect(() => {
   <FilterModalities @toggle="handleModalities" />
   <FilterPreinstalled @toggle="handlePreinstalled" />
   <FilterLoanable @toggle="handleLoanable" />
+  <div class="border border-base-300 bg-base-200 my-1 text-center">
+    <button class="btn btn-neutral my-1" @click="handleReset">{{ $t('filter.reset') }}</button>
+  </div>
   <FilterColumns @toggle="handleColumns" />
   <FilterText @search="handleSearch" />
 </template>
