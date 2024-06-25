@@ -45,5 +45,8 @@
     "subject_areas": "Thématiques",
     "author": "Auteur",
     "loanable": "Prêtable ?"
+  },
+  "pdf": {
+    "title": "Matériel : Allemand - CAA"
   }
 }

@@ -10,7 +10,7 @@ export default function downloadPdf(rows) {
       fontSize: 9
     },
     content: [
-      { text: 'This is a header', style: 'header' },
+      { text: i18n.global.t('pdf.title'), style: 'header' },
       {
         table: {
           body: [
@@ -24,7 +24,7 @@ export default function downloadPdf(rows) {
               i18n.global.t('filter.year'),
               i18n.global.t('filter.modalities'),
               i18n.global.t('table.author'),
-              'Code', // TODO
+              'Code',
               i18n.global.t('table.loanable'),
               i18n.global.t('table.description')
             ],

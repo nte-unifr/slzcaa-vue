@@ -45,5 +45,8 @@
     "subject_areas": "Themen",
     "author": "Autoren",
     "loanable": "Ausleihbar?"
+  },
+  "pdf": {
+    "title": "Materialen: Deutsch - SLZ"
   }
 }

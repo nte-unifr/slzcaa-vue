@@ -45,5 +45,8 @@
     "subject_areas": "Subject Areas",
     "author": "Author",
     "loanable": "Loanable?"
+  },
+  "pdf": {
+    "title": "Material: English - SAC"
   }
 }
