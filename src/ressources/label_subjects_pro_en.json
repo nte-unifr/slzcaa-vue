@@ -1,14 +1,15 @@
 {
-  "akademische sprache": "Academic language",
-  "wirtschaft, politik": "Economics, Politics",
+  "akademische_sprache": "Academic language",
+  "wirtschaft_politik": "Economics, Politics",
   "ingenieurwissenschaft": "Engineering",
-  "geschichte, kunstgeschichte": "History, History of Art",
+  "geschichte_kunstgeschichte": "History, History of Art",
   "humanwissenschaften": "Human Science",
   "recht": "Law",
   "sprachenlernen": "Learning methodology",
   "linguistik": "Linguistics",
-  "medizin, pharmazie": "Medicine, Pharmacy",
+  "medizin_pharmazie": "Medicine, Pharmacy",
   "berufssprache": "Professional language",
-  "psychologie, pädagogik": "Psychology, Education",
-  "tourismusberufe": "Tourist branch"
+  "psychologie_pädagogik": "Psychology, Education",
+  "berufssprache": "Tourist branch",
+  "naturwissenschaften": "Natural Science"
 }

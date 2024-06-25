@@ -2,6 +2,7 @@
 import { ref, watchEffect } from 'vue'
 import { useEventBus } from '@vueuse/core'
 import FilterCheckList from './FilterCheckList.vue'
+import subjectsMatch from '../ressources/label_subjects_match.json'
 import subjectsEverydayEn from '../ressources/label_subjects_everyday_en.json'
 import subjectsProEn from '../ressources/label_subjects_pro_en.json'
 
@@ -39,10 +40,16 @@ watchEffect(() => {
   const selected = itemsEveryday.value.concat(itemsPro.value).filter((item) => item.checked)
   const paramRequired = selected.length > 0 && selected.length < nbSubject
   if (paramRequired) {
-    const rows = selected.map((e) => {
-      return { fachbezug: { _contains: e.key } }
+    const rows = []
+    selected.forEach((e) => {
+      subjectsMatch[e.key].forEach((keyword) => {
+        if (keyword) {
+          rows.push({ fachbezug: { _contains: keyword } })
+        } else {
+          rows.push({ fachbezug: { _null: true } })
+        }
+      })
     })
-    rows.push({ fachbezug: { _null: true } })
     const param = JSON.stringify({ _or: rows })
     emit('toggle', param)
   } else {

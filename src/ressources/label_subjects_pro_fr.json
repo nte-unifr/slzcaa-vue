@@ -1,14 +1,15 @@
 {
-  "akademische sprache": "Langage académique",
-  "wirtschaft, politik": "Economie, Politique",
+  "akademische_sprache": "Langage académique",
+  "wirtschaft_politik": "Economie, Politique",
   "ingenieurwissenschaft": "Ingénierie",
-  "geschichte, kunstgeschichte": "Histoire, Histoire de l'art",
+  "geschichte_kunstgeschichte": "Histoire, Histoire de l'art",
   "humanwissenschaften": "Sciences humaines",
   "recht": "Droit",
   "sprachenlernen": "Méthodologie d'apprentissage",
   "linguistik": "Linguistique",
-  "medizin, pharmazie": "Médecine, Pharmacie",
+  "medizin_pharmazie": "Médecine, Pharmacie",
   "berufssprache": "Langage professionnel",
-  "psychologie, pädagogik": "Psychologie, Education",
-  "tourismusberufe": "Professions du tourisme"
+  "psychologie_pädagogik": "Psychologie, Education",
+  "berufssprache": "Professions du tourisme",
+  "naturwissenschaften": "Sciences naturelles"
 }

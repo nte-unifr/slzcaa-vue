@@ -1,14 +1,15 @@
 {
-  "akademische sprache": "Akademische Sprache",
-  "wirtschaft, politik": "Wirtschaft, Politik",
+  "akademische_sprache": "Akademische Sprache",
+  "wirtschaft_politik": "Wirtschaft, Politik",
   "ingenieurwissenschaft": "Ingenieurwissenschaft",
-  "geschichte, kunstgeschichte": "Geschichte, Kunstgeschichte",
+  "geschichte_kunstgeschichte": "Geschichte, Kunstgeschichte",
   "humanwissenschaften": "Humanwissenschaften",
   "recht": "Recht",
   "sprachenlernen": "Lernmethodik",
   "linguistik": "Linguistik",
-  "medizin, pharmazie": "Medizin, Pharmazie",
+  "medizin_pharmazie": "Medizin, Pharmazie",
   "berufssprache": "Berufssprache",
-  "psychologie, pädagogik": "Psychologie, Pädagogik",
-  "tourismusberufe": "Tourismusberufe"
+  "psychologie_pädagogik": "Psychologie, Pädagogik",
+  "berufssprache": "Tourismusberufe",
+  "naturwissenschaften": "Naturwissenschaften"
 }

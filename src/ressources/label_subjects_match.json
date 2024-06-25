@@ -1,0 +1,37 @@
+{
+  "alltagssprache": [""],
+  "korrespondenz": ["korrespondenz"],
+  "reisen": ["reisen"],
+  "landeskunde": ["landeskunde", "sozialkunde"],
+  "literatur": ["literatur"],
+  "musik": ["musik"],
+  "filme": ["film"],
+  "spiele": ["spiel"],
+  "akademische_sprache": ["akademisch", "wissenschaft"],
+  "wirtschaft_politik": ["politik", "wirtschaft"],
+  "recht": ["recht"],
+  "psychologie_pädagogik": ["pädagogik", "psychologie"],
+  "geschichte_kunstgeschichte": ["geschichte", "kunst", "kunstgeschichte"],
+  "linguistik": ["linguistik"],
+  "humanwissenschaften": ["geisteswissenschaft", "philosophie", "soziologie", "theologie"],
+  "naturwissenschaften": [
+    "naturwissenschaft",
+    "agronomie",
+    "biologie",
+    "chemie",
+    "geografie",
+    "mathematik",
+    "physik"
+  ],
+  "ingenieurwissenschaft": [
+    "elektrotechnik",
+    "informatik",
+    "ingenieurwissenschaft",
+    "technik",
+    "architektur"
+  ],
+  "medizin_pharmazie": ["medizin", "pharmazie"],
+  "berufssprache": ["beruf", "tourismus"],
+  "tourismusberufe": ["gastronomie"],
+  "sprachenlernen": ["didaktik", "methodik"]
+}
