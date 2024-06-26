@@ -21,16 +21,22 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['downloadPdf', 'selectRow', 'resetSelection'])
+const emit = defineEmits(['downloadPdf', 'resetSelection', 'selectRow'])
 
 const BASE_URL = 'https://eddb.unifr.ch/slzcaa-admin/items/materials'
 
 const page = ref(1)
 const nbRowsFound = ref(0)
 const nbRowsInDatabase = ref(0)
+const sort = ref({ field: 'titel', ascending: true })
 
 const urlDataTable = computed(() => {
-  return `${BASE_URL}?limit=${NB_ELEMENT_PER_PAGE}&page=${page.value}&filter=${props.filterParam}`
+  const limitArg = `limit=${NB_ELEMENT_PER_PAGE}`
+  const pageArg = `page=${page.value}`
+  const filterArg = `filter=${props.filterParam}`
+  const ascArg = sort.value.ascending ? '' : '-'
+  const sortArg = `sort=${ascArg}${sort.value.field}`
+  return `${BASE_URL}?${limitArg}&${pageArg}&${filterArg}&${sortArg}`
 })
 const urlNbFound = computed(() => {
   return `${BASE_URL}?filter=${props.filterParam}&aggregate[count]=*`
@@ -78,6 +84,12 @@ function selectRow(id) {
   const isChecked = props.selectedRows.has(id)
   emit('selectRow', row, isChecked)
 }
+
+function setSort(field, isAscending) {
+  sort.value.field = field
+  sort.value.ascending = isAscending
+  page.value = 1
+}
 </script>
 
 <template>
@@ -102,8 +114,10 @@ function selectRow(id) {
     <TableBody
       :cols="columnsChecked"
       :rows="dataTable.data"
+      :sort="sort"
       :selectedRows="selectedRows"
       @select-row="selectRow"
+      @setSort="setSort"
     />
     <TablePagination
       :page="page"

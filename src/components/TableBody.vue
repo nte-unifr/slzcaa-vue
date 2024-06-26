@@ -1,5 +1,7 @@
 <script setup>
+import TableCellSort from './TableCellSort.vue'
 import { fmtBoolean, fmtCode, fmtLanguage, fmtSplitAndLower, fmtSubject } from '../helper.js'
+import { i18n } from '../i18n'
 
 const props = defineProps({
   cols: {
@@ -10,17 +12,25 @@ const props = defineProps({
     type: Array,
     required: true
   },
+  sort: {
+    type: Object,
+    required: true
+  },
   selectedRows: {
     type: Set,
     required: true
   }
 })
 
-const emit = defineEmits(['selectRow'])
+const emit = defineEmits(['selectRow', 'setSort'])
 
 function onChange(e) {
   const id = e.target.value
   emit('selectRow', id)
+}
+
+function setSort(field, isAscending) {
+  emit('setSort', field, isAscending)
 }
 </script>
 
@@ -30,15 +40,36 @@ function onChange(e) {
       <thead>
         <tr>
           <th></th>
-          <th v-show="props.cols.has('titel')">{{ $t('table.title') }}</th>
+          <th v-show="props.cols.has('titel')">
+            <TableCellSort
+              :title="i18n.global.t('table.title')"
+              field="titel"
+              :ascending="props.sort.field === 'titel' ? props.sort.ascending : null"
+              @setSort="setSort"
+            />
+          </th>
           <th v-show="props.cols.has('sprachniveau')">{{ $t('filter.target_levels') }}</th>
           <th v-show="props.cols.has('fertigkeit')">{{ $t('filter.skills') }}</th>
           <th v-show="props.cols.has('fachbezug')">{{ $t('table.subject_areas') }}</th>
           <th v-show="props.cols.has('ausgangssprache')">{{ $t('filter.source_languages') }}</th>
           <th v-show="props.cols.has('medium')">{{ $t('filter.media') }}</th>
-          <th v-show="props.cols.has('jahr')">{{ $t('filter.year') }}</th>
+          <th v-show="props.cols.has('jahr')">
+            <TableCellSort
+              :title="i18n.global.t('filter.year')"
+              field="jahr"
+              :ascending="props.sort.field === 'jahr' ? props.sort.ascending : null"
+              @setSort="setSort"
+            />
+          </th>
           <th v-show="props.cols.has('asl')">{{ $t('filter.modalities') }}</th>
-          <th v-show="props.cols.has('autor')">{{ $t('table.author') }}</th>
+          <th v-show="props.cols.has('autor')">
+            <TableCellSort
+              :title="i18n.global.t('table.author')"
+              field="autor"
+              :ascending="props.sort.field === 'autor' ? props.sort.ascending : null"
+              @setSort="setSort"
+            />
+          </th>
           <th v-show="props.cols.has('code')">Code</th>
           <th v-show="props.cols.has('ble')">{{ $t('table.loanable') }}</th>
           <th v-show="props.cols.has('kommentar')">{{ $t('table.description') }}</th>
