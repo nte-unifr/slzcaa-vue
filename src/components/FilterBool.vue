@@ -26,6 +26,7 @@ function onChange() {
           <input
             type="checkbox"
             class="checkbox checkbox-primary"
+            data-test="input-checkbox"
             :checked="props.checked"
             v-on:change="onChange"
           />
