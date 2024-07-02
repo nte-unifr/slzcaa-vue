@@ -45,7 +45,7 @@ function onSelectAll() {
             <span class="label-text">{{ $t(item.key) }}</span>
             <input
               type="checkbox"
-              class="checkbox checkbox-xs"
+              class="checkbox"
               :value="item.key"
               :checked="item.checked"
               v-on:change="onChange"

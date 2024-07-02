@@ -50,5 +50,5 @@ export default function downloadPdf(rows) {
     ]
   }
   pdfMake.fonts = fonts
-  pdfMake.createPdf(docDefinition).open()
+  pdfMake.createPdf(docDefinition).download(i18n.global.t('pdf.title'))
 }
