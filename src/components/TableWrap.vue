@@ -81,7 +81,7 @@ function resetSelection() {
 
 function selectRow(id) {
   const row = dataTable.value.data.find((item) => item.id == id)
-  const isChecked = props.selectedRows.has(id)
+  const isChecked = props.selectedRows.has(row.id)
   emit('selectRow', row, isChecked)
 }
 

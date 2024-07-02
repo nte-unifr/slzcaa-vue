@@ -13,7 +13,7 @@ function switchLanguage(lang) {
   <div class="navbar bg-base-300">
     <div class="navbar-start">
       <a class="btn btn-ghost text-xl" href="https://www.unifr.ch">
-        <img alt="Unifr logo" class="h-8" src="../assets/logo.svg" />
+        <img alt="Unifr logo" width="45" src="../assets/logo.svg" />
       </a>
     </div>
     <div class="navbar-center">
