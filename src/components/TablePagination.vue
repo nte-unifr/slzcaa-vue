@@ -10,6 +10,8 @@ const props = defineProps({
   }
 })
 
+import { PAGE_RANGE } from '../config.js'
+
 const emit = defineEmits(['changePage'])
 
 import { ref, watchEffect } from 'vue'
@@ -17,19 +19,26 @@ import { ref, watchEffect } from 'vue'
 const pages = ref([])
 
 function changePage(p) {
-  emit('changePage', p)
-}
-
-function range(start, end) {
-  return Array(end - start + 1)
-    .fill()
-    .map((_, idx) => start + idx)
+  if (p != props.page) {
+    emit('changePage', p)
+  }
 }
 
 watchEffect(() => {
-  const start = Math.max(1, props.page - 3)
-  const end = Math.min(props.nbPage, props.page + 3)
-  pages.value = range(start, end)
+  const rangeWithoutExtrem = PAGE_RANGE - 1
+  const start = Math.max(1, props.page - rangeWithoutExtrem)
+  const end = Math.min(props.nbPage, props.page + rangeWithoutExtrem)
+  const buttons = []
+  if (start > 1) {
+    buttons.push(1)
+  }
+  for (let i = start; i <= end; ++i) {
+    buttons.push(i)
+  }
+  if (end < props.nbPage) {
+    buttons.push(props.nbPage)
+  }
+  pages.value = buttons
 })
 </script>
 
@@ -39,6 +48,7 @@ watchEffect(() => {
       <input
         v-for="(p, i) in pages"
         :key="i"
+        data-test="page-button"
         class="join-item btn btn-square"
         type="radio"
         name="options"
