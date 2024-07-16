@@ -11,7 +11,7 @@ import downloadPdf from './download.js'
 
 const itemsSelected = ref(new Set([]))
 const columnsChecked = ref(new Set([]))
-const filterLang = ref('EFL')
+const filterLang = ref('')
 const filterParam = ref('')
 
 const changeFilter = useDebounceFn(

@@ -38,6 +38,7 @@ const langAvailable = ['de', 'en', 'fr']
 const preferred = navigator.languages.find((l) => langAvailable.includes(l))
 
 export const i18n = createI18n({
+  legacy: false, // you must set `false`, to use Composition API
   locale: locale || preferred || 'de',
   fallbackLocale: 'en',
   messages: {

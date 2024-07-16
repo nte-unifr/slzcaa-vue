@@ -1,11 +1,14 @@
 <script setup>
 import IconLanguage from './icons/IconLanguage.vue'
 import IconUser from './icons/IconUser.vue'
-import { i18n } from '../i18n'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n({ useScope: 'global' })
 
 function switchLanguage(lang) {
   localStorage.setItem('locale', lang)
-  i18n.global.locale = lang
+  locale.value = lang
+  document.querySelector('html').setAttribute('lang', lang)
 }
 </script>
 
