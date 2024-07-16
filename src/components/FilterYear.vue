@@ -39,7 +39,12 @@ watchEffect(() => {
     <div class="collapse-content bg-white">
       <div v-for="(item, index) in items" :key="index" class="form-control">
         <label class="label cursor-pointer">
-          <span class="label-text">{{ item.label }}</span>
+          <span class="label-text">
+            <span v-if="item.key">
+              {{ $t('filter.since') }}
+            </span>
+            {{ item.label }}
+          </span>
           <input
             type="radio"
             name="radio-10"
