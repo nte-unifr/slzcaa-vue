@@ -1,6 +1,6 @@
 <script setup>
 import TableCellSort from './TableCellSort.vue'
-import { fmtBoolean, fmtCode, fmtLanguage, fmtSplitAndLower, fmtSubject } from '../helper.js'
+import { fmtCode, fmtLanguage, fmtSplitAndLower, fmtSubject } from '../helper.js'
 import { i18n } from '../i18n'
 
 const props = defineProps({
@@ -61,7 +61,7 @@ function setSort(field, isAscending) {
               @setSort="setSort"
             />
           </th>
-          <th v-show="props.cols.has('asl')">{{ $t('filter.modalities') }}</th>
+          <th v-show="props.cols.has('lernweise')">{{ $t('filter.modalities') }}</th>
           <th v-show="props.cols.has('autor')">
             <TableCellSort
               :title="i18n.global.t('table.author')"
@@ -71,7 +71,7 @@ function setSort(field, isAscending) {
             />
           </th>
           <th v-show="props.cols.has('code')">Code</th>
-          <th v-show="props.cols.has('ble')">{{ $t('table.loanable') }}</th>
+          <!--<th v-show="props.cols.has('ble')">{{ $t('table.loanable') }}</th>-->
           <th v-show="props.cols.has('kommentar')">{{ $t('table.description') }}</th>
         </tr>
       </thead>
@@ -111,16 +111,18 @@ function setSort(field, isAscending) {
             {{ fmtSplitAndLower(row.medium) }}
           </td>
           <td v-show="props.cols.has('jahr')">{{ row.jahr }}</td>
-          <td v-show="props.cols.has('asl')">
+          <td v-show="props.cols.has('lernweise')">
             {{ fmtSplitAndLower(row.asl) }}
           </td>
           <td v-show="props.cols.has('autor')">{{ row.autor }}</td>
           <td v-show="props.cols.has('code')">
             {{ fmtCode(row) }}
           </td>
+          <!--
           <td v-show="props.cols.has('ble')">
             {{ fmtBoolean(row.ausleihe_ble) }}
           </td>
+          -->
           <td v-show="props.cols.has('kommentar')">{{ row.kommentar }}</td>
         </tr>
       </tbody>

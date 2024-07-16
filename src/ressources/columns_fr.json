@@ -1,14 +1,13 @@
 {
   "titel": "Titre",
-  "fachbezug": "Thématiques",
-  "asl": "Modalités",
   "sprachniveau": "Niveaux cible",
   "fertigkeit": "Compétences",
+  "fachbezug": "Thématiques",
   "ausgangssprache": "Langues de départ",
   "medium": "Médias",
   "jahr": "Année",
+  "lernweise": "Modalités",
   "autor": "Auteurs",
   "code": "Code",
-  "kommentar": "Description",
-  "ble": "Prêtable ?"
+  "kommentar": "Description"
 }

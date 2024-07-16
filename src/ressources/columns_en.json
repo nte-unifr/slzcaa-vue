@@ -1,14 +1,13 @@
 {
   "titel": "Title",
-  "fachbezug": "Subject Areas",
-  "asl": "Modalities",
   "sprachniveau": "Target levels",
   "fertigkeit": "Skills",
+  "fachbezug": "Subject Areas",
   "ausgangssprache": "Source languages",
   "medium": "Media",
   "jahr": "Year",
+  "lernweise": "Modalities",
   "autor": "Author",
   "code": "Code",
-  "kommentar": "Description",
-  "ble": "Loanable ?"
+  "kommentar": "Description"
 }

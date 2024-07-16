@@ -4,7 +4,7 @@ import { useEventBus } from '@vueuse/core'
 import FilterColumns from './FilterColumns.vue'
 import FilterLang from './FilterLang.vue'
 import FilterLevels from './FilterLevels.vue'
-import FilterLoanable from './FilterLoanable.vue'
+// import FilterLoanable from './FilterLoanable.vue'
 import FilterMedia from './FilterMedia.vue'
 import FilterModalities from './FilterModalities.vue'
 import FilterPreinstalled from './FilterPreinstalled.vue'
@@ -25,7 +25,7 @@ const bus = useEventBus('reset')
 
 const filterLangSrc = ref('')
 const filterLevels = ref('')
-const filterLoanable = ref('')
+// const filterLoanable = ref('')
 const filterMedia = ref('')
 const filterModalities = ref('')
 const filterPreinstalled = ref('')
@@ -46,9 +46,9 @@ function handleLevel(param) {
   filterLevels.value = param
 }
 
-function handleLoanable(param) {
-  filterLoanable.value = param
-}
+// function handleLoanable(param) {
+//   filterLoanable.value = param
+// }
 
 function handleMedia(param) {
   filterMedia.value = param
@@ -87,7 +87,7 @@ watchEffect(() => {
     JSON.stringify({ spr: { _contains: props.language } }), // field in the header
     filterLangSrc.value,
     filterLevels.value,
-    filterLoanable.value,
+    // filterLoanable.value,
     filterMedia.value,
     filterModalities.value,
     filterPreinstalled.value,
@@ -116,7 +116,9 @@ watchEffect(() => {
   <FilterYear @change-year="handleYear" />
   <FilterModalities @toggle="handleModalities" />
   <FilterPreinstalled @toggle="handlePreinstalled" />
-  <FilterLoanable @toggle="handleLoanable" />
+  <!--
+    <FilterLoanable @toggle="handleLoanable" />
+  -->
   <div class="border border-base-300 bg-base-200 my-1 text-center">
     <button class="btn btn-neutral my-1" @click="handleReset">{{ $t('filter.reset') }}</button>
   </div>

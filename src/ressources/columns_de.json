@@ -1,14 +1,13 @@
 {
   "titel": "Titel",
-  "fachbezug": "Themen",
-  "asl": "Lernweise",
   "sprachniveau": "Zielstufen",
   "fertigkeit": "Fertigkeiten",
+  "fachbezug": "Themen",
   "ausgangssprache": "Ausgangssprachen",
   "medium": "Medium",
   "jahr": "Jahr",
+  "lernweise": "Lernweise",
   "autor": "Autoren",
   "code": "Code",
-  "kommentar": "Beschreibung",
-  "ble": "Ausleihbar ?"
+  "kommentar": "Beschreibung"
 }
