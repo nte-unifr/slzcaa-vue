@@ -1,6 +1,7 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 import { useEventBus } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
 import FilterCheckList from './FilterCheckList.vue'
 import subjectsMatch from '../ressources/label_subjects_match.json'
 import subjectsEverydayEn from '../ressources/label_subjects_everyday_en.json'
@@ -8,17 +9,10 @@ import subjectsProEn from '../ressources/label_subjects_pro_en.json'
 
 const emit = defineEmits(['toggle'])
 const bus = useEventBus('reset')
+const { t } = useI18n()
 
-const itemsEveryday = ref(
-  Object.keys(subjectsEverydayEn).map((k) => {
-    return { key: k, checked: true }
-  })
-)
-const itemsPro = ref(
-  Object.keys(subjectsProEn).map((k) => {
-    return { key: k, checked: true }
-  })
-)
+const itemsEveryday = ref([])
+const itemsPro = ref([])
 
 bus.on(() => {
   itemsEveryday.value.forEach((item) => (item.checked = true))
@@ -34,6 +28,20 @@ function onChangePro(param) {
   const index = itemsPro.value.findIndex((e) => e.key === param)
   itemsPro.value[index].checked = !itemsPro.value[index].checked
 }
+
+onMounted(() => {
+  const everydayTmp = Object.keys(subjectsEverydayEn).map((key) => {
+    return { key: key, value: t(key), checked: true }
+  })
+  everydayTmp.sort((a, b) => a.value.localeCompare(b.value))
+  itemsEveryday.value = everydayTmp
+
+  const proTmp = Object.keys(subjectsProEn).map((key) => {
+    return { key: key, value: t(key), checked: true }
+  })
+  proTmp.sort((a, b) => a.value.localeCompare(b.value))
+  itemsPro.value = proTmp
+})
 
 watchEffect(() => {
   const nbSubject = itemsEveryday.value.length + itemsPro.value.length

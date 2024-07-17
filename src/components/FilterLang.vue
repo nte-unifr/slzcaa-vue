@@ -1,17 +1,15 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 import { useEventBus } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
 import langEn from '../ressources/label_lang_en.json'
 import FilterCheckList from './FilterCheckList.vue'
 
 const emit = defineEmits(['toggle'])
 const bus = useEventBus('reset')
+const { t } = useI18n()
 
-const items = ref(
-  Object.keys(langEn).map((k) => {
-    return { key: k, checked: true }
-  })
-)
+const items = ref([])
 
 bus.on(() => {
   items.value.forEach((item) => (item.checked = true))
@@ -21,6 +19,16 @@ function onChange(param) {
   const index = items.value.findIndex((e) => e.key === param)
   items.value[index].checked = !items.value[index].checked
 }
+
+onMounted(() => {
+  const tmp = Object.keys(langEn).map((key) => {
+    return { key: key, value: t(key), checked: true }
+  })
+  tmp.sort((a, b) => a.value.localeCompare(b.value))
+  const otherIndex = tmp.findIndex((e) => e.key === 'other')
+  tmp.push(tmp.splice(otherIndex, 1)[0])
+  items.value = tmp
+})
 
 watchEffect(() => {
   // TODO: add a boolean field `isAnotherLangSrc` using a hook.

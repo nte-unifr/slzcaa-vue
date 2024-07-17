@@ -1,17 +1,15 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 import { useEventBus } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
 import modalitiesEn from '../ressources/modalities_en.json'
 import FilterCheckList from './FilterCheckList.vue'
 
 const emit = defineEmits(['toggle'])
 const bus = useEventBus('reset')
+const { t } = useI18n()
 
-const items = ref(
-  Object.keys(modalitiesEn).map((k) => {
-    return { key: k, checked: true }
-  })
-)
+const items = ref([])
 
 bus.on(() => {
   items.value.forEach((item) => (item.checked = true))
@@ -21,6 +19,14 @@ function onChange(param) {
   const index = items.value.findIndex((e) => e.key === param)
   items.value[index].checked = !items.value[index].checked
 }
+
+onMounted(() => {
+  const tmp = Object.keys(modalitiesEn).map((key) => {
+    return { key: key, value: t(key), checked: true }
+  })
+  tmp.sort((a, b) => a.value.localeCompare(b.value))
+  items.value = tmp
+})
 
 watchEffect(() => {
   const selected = items.value.filter((item) => item.checked)
