@@ -1,5 +1,5 @@
 import pdfMake from 'pdfmake/build/pdfmake'
-import { fmtBoolean, fmtCode, fmtLanguage, fmtSplitAndLower, fmtSubject } from './helper.js'
+import { fmtCode, fmtLanguage, fmtSplitAndLower, fmtSubject } from './helper.js'
 import { fonts } from './fonts.js'
 import { i18n } from './i18n'
 
@@ -25,7 +25,6 @@ export default function downloadPdf(rows) {
               i18n.global.t('filter.modalities'),
               i18n.global.t('table.author'),
               'Code',
-              i18n.global.t('table.loanable'),
               i18n.global.t('table.description')
             ],
             ...Array.from(rows).map((item) => {
@@ -40,7 +39,6 @@ export default function downloadPdf(rows) {
                 fmtSplitAndLower(item.asl),
                 item.autor,
                 fmtCode(item),
-                fmtBoolean(item.ausleihe_ble),
                 item.kommentar
               ]
             })
