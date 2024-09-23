@@ -1,19 +1,22 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
+import { useEventBus } from '@vueuse/core'
 
 const emit = defineEmits(['search'])
+const bus = useEventBus('reset')
 
 const query = ref('')
 
-function onChange(e) {
-  query.value = e.target.value.trim()
-}
+bus.on(() => {
+  query.value = ''
+})
 
 watchEffect(() => {
   const fields = ['autor', 'titel', 'kommentar']
-  if (query.value.length) {
+  const q = query.value.trim()
+  if (q.length) {
     const conditions = fields.map((f) => {
-      return { [f]: { _contains: query.value } }
+      return { [f]: { _contains: q } }
     })
     const param = JSON.stringify({ _or: conditions })
     emit('search', param)
@@ -31,7 +34,7 @@ watchEffect(() => {
         type="text"
         :placeholder="$t('filter.search')"
         class="input input-bordered w-full"
-        @input="onChange"
+        v-model="query"
       />
     </div>
   </div>

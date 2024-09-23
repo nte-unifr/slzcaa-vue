@@ -9,8 +9,13 @@ export default function downloadPdf(rows) {
     defaultStyle: {
       fontSize: 9
     },
+    header: {
+      stack: [{ text: i18n.global.t('pdf.title'), alignment: 'center' }]
+    },
+    footer: function (currentPage, pageCount) {
+      return [{ text: `${currentPage} / ${pageCount}`, alignment: 'center' }]
+    },
     content: [
-      { text: i18n.global.t('pdf.title'), style: 'header' },
       {
         table: {
           body: [
@@ -48,5 +53,5 @@ export default function downloadPdf(rows) {
     ]
   }
   pdfMake.fonts = fonts
-  pdfMake.createPdf(docDefinition).download(i18n.global.t('pdf.title'))
+  pdfMake.createPdf(docDefinition).download(i18n.global.t('pdf.filename'))
 }

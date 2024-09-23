@@ -48,7 +48,14 @@ function setSort(field, isAscending) {
               @setSort="setSort"
             />
           </th>
-          <th v-show="props.cols.has('sprachniveau')">{{ $t('filter.target_levels') }}</th>
+          <th v-show="props.cols.has('sprachniveau')">
+            <TableCellSort
+              :title="i18n.global.t('filter.target_levels')"
+              field="sprachniveau"
+              :ascending="props.sort.field === 'sprachniveau' ? props.sort.ascending : null"
+              @setSort="setSort"
+            />
+          </th>
           <th v-show="props.cols.has('fertigkeit')">{{ $t('filter.skills') }}</th>
           <th v-show="props.cols.has('fachbezug')">{{ $t('table.subject_areas') }}</th>
           <th v-show="props.cols.has('ausgangssprache')">{{ $t('filter.source_languages') }}</th>
@@ -63,12 +70,7 @@ function setSort(field, isAscending) {
           </th>
           <th v-show="props.cols.has('lernweise')">{{ $t('filter.modalities') }}</th>
           <th v-show="props.cols.has('autor')">
-            <TableCellSort
-              :title="i18n.global.t('table.author')"
-              field="autor"
-              :ascending="props.sort.field === 'autor' ? props.sort.ascending : null"
-              @setSort="setSort"
-            />
+            {{ i18n.global.t('table.author') }}
           </th>
           <th v-show="props.cols.has('code')">Code</th>
           <!--<th v-show="props.cols.has('ble')">{{ $t('table.loanable') }}</th>-->
