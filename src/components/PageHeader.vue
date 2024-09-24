@@ -1,6 +1,5 @@
 <script setup>
 import IconLanguage from './icons/IconLanguage.vue'
-import IconUser from './icons/IconUser.vue'
 
 function switchLanguage(lang) {
   localStorage.setItem('locale', lang)
@@ -19,23 +18,6 @@ function switchLanguage(lang) {
       <a class="btn btn-ghost text-xl">{{ $t('header.title') }}</a>
     </div>
     <div class="navbar-end">
-      <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-          <IconUser />
-        </div>
-        <div
-          tabindex="0"
-          class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
-        >
-          <div class="card-body">
-            <div class="card-actions">
-              <button class="btn btn-primary btn-block">
-                {{ $t('header.registration') }}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <IconLanguage />
