@@ -28,8 +28,9 @@
     "skills": "Compétences",
     "trick_title": "Astuce!",
     "trick_desc": "Des combinaisons variées de compétences et de niveaux cible (p.ex. Lire B2 + Parler A2), exigent des recherches séparées.",
-    "subject_everyday": "Thématiques (Quotidien)",
-    "subject_pro": "Thématiques (Études + Profession)",
+    "subject_areas": "Thématiques",
+    "subject_everyday": "Quotidien",
+    "subject_pro": "Études + Profession",
     "source_languages": "Langues de départ",
     "media": "Médias",
     "since": "Depuis",
@@ -43,7 +44,6 @@
   "table": {
     "title": "Titre",
     "description": "Description",
-    "subject_areas": "Thématiques",
     "author": "Auteur",
     "loanable": "Prêtable ?"
   },

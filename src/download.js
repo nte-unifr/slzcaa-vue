@@ -23,7 +23,7 @@ export default function downloadPdf(rows) {
               i18n.global.t('table.title'),
               i18n.global.t('filter.target_levels'),
               i18n.global.t('filter.skills'),
-              i18n.global.t('table.subject_areas'),
+              i18n.global.t('filter.subject_areas'),
               i18n.global.t('filter.source_languages'),
               i18n.global.t('filter.media'),
               i18n.global.t('filter.year'),

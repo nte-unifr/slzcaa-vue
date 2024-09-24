@@ -28,8 +28,9 @@
     "skills": "Fertigkeiten",
     "trick_title": "Tipp!",
     "trick_desc": "Unterschiedliche Kombinationen von Fertigkeiten und Zielstufen (z.B. Lesen B2 + Sprechen A2) erfordern separate Suchvorgänge.",
-    "subject_everyday": "Themen (Alltag)",
-    "subject_pro": "Themen (Studium + Beruf)",
+    "subject_areas": "Themen",
+    "subject_everyday": "Alltag",
+    "subject_pro": "Studium + Beruf",
     "source_languages": "Ausgangssprachen ",
     "media": "Medium",
     "since": "Ab",
@@ -43,7 +44,6 @@
   "table": {
     "title": "Titel",
     "description": "Beschreibung",
-    "subject_areas": "Themen",
     "author": "Autoren",
     "loanable": "Ausleihbar?"
   },

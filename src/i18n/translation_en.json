@@ -28,8 +28,9 @@
     "skills": "Skills",
     "trick_title": "Tipp!",
     "trick_desc": "Different combinations of skills and target levels (e.g. Reading B2 + Speaking A2) require separate search operations.",
-    "subject_everyday": "Subject Areas (Everyday)",
-    "subject_pro": "Subject Areas (Studies + Profession)",
+    "subject_areas": "Subject Areas",
+    "subject_everyday": "Everyday",
+    "subject_pro": "Studies + Profession",
     "source_languages": "Source Languages",
     "media": "Media",
     "since": "Since",
@@ -43,7 +44,6 @@
   "table": {
     "title": "Title",
     "description": "Description",
-    "subject_areas": "Subject Areas",
     "author": "Author",
     "loanable": "Loanable?"
   },

@@ -57,7 +57,7 @@ function setSort(field, isAscending) {
             />
           </th>
           <th v-show="props.cols.has('fertigkeit')">{{ $t('filter.skills') }}</th>
-          <th v-show="props.cols.has('fachbezug')">{{ $t('table.subject_areas') }}</th>
+          <th v-show="props.cols.has('fachbezug')">{{ $t('filter.subject_areas') }}</th>
           <th v-show="props.cols.has('ausgangssprache')">{{ $t('filter.source_languages') }}</th>
           <th v-show="props.cols.has('medium')">{{ $t('filter.media') }}</th>
           <th v-show="props.cols.has('jahr')">

@@ -2,7 +2,6 @@
 import { onMounted, ref, watchEffect } from 'vue'
 import { useEventBus } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
-import FilterCheckList from './FilterCheckList.vue'
 import subjectsMatch from '../ressources/label_subjects_match.json'
 import subjectsEverydayEn from '../ressources/label_subjects_everyday_en.json'
 import subjectsProEn from '../ressources/label_subjects_pro_en.json'
@@ -19,14 +18,25 @@ bus.on(() => {
   itemsPro.value.forEach((item) => (item.checked = true))
 })
 
-function onChangeEveryday(param) {
-  const index = itemsEveryday.value.findIndex((e) => e.key === param)
+function onChangeEveryday(e) {
+  const param = e.target.value
+  const index = itemsEveryday.value.findIndex((item) => item.key === param)
   itemsEveryday.value[index].checked = !itemsEveryday.value[index].checked
 }
 
-function onChangePro(param) {
-  const index = itemsPro.value.findIndex((e) => e.key === param)
+function onChangePro(e) {
+  const param = e.target.value
+  const index = itemsPro.value.findIndex((item) => item.key === param)
   itemsPro.value[index].checked = !itemsPro.value[index].checked
+}
+
+function onSelectAll() {
+  const items = itemsEveryday.value.concat(itemsPro.value)
+  const allChecked = items.every((item) => item.checked)
+  const toToggle = (item) => allChecked || !item.checked
+  items.filter(toToggle).forEach((item) => {
+    item.checked = !item.checked
+  })
 }
 
 onMounted(() => {
@@ -67,10 +77,50 @@ watchEffect(() => {
 </script>
 
 <template>
-  <FilterCheckList
-    :title="$t('filter.subject_everyday')"
-    :items="itemsEveryday"
-    @toggle="onChangeEveryday"
-  />
-  <FilterCheckList :title="$t('filter.subject_pro')" :items="itemsPro" @toggle="onChangePro" />
+  <!-- Note: we cannot use the `FilterCheckList` component because there are two groups. -->
+  <details class="collapse collapse-arrow bg-base-200 border-2 border-slate-200 my-1">
+    <summary class="collapse-title text-l font-medium">
+      {{ $t('filter.subject_areas') }}
+    </summary>
+    <div class="collapse-content bg-white">
+      <p class="text-center">
+        <button class="btn btn-xs" v-on:click="onSelectAll">
+          <span v-if="itemsEveryday.concat(itemsPro).every((item) => item.checked)">{{
+            $t('filter.unselect_all')
+          }}</span>
+          <span v-else>{{ $t('filter.select_all') }}</span>
+        </button>
+      </p>
+      <p class="my-4">{{ $t('filter.subject_everyday') }}</p>
+      <ul>
+        <li v-for="(item, index) in itemsEveryday" :key="index" class="border-t-2">
+          <label class="label cursor-pointer">
+            <span class="label-text">{{ $t(item.key) }}</span>
+            <input
+              type="checkbox"
+              class="checkbox"
+              :value="item.key"
+              :checked="item.checked"
+              v-on:change="onChangeEveryday"
+            />
+          </label>
+        </li>
+      </ul>
+      <p class="my-4">{{ $t('filter.subject_pro') }}</p>
+      <ul>
+        <li v-for="(item, index) in itemsPro" :key="index" class="border-t-2">
+          <label class="label cursor-pointer">
+            <span class="label-text">{{ $t(item.key) }}</span>
+            <input
+              type="checkbox"
+              class="checkbox"
+              :value="item.key"
+              :checked="item.checked"
+              v-on:change="onChangePro"
+            />
+          </label>
+        </li>
+      </ul>
+    </div>
+  </details>
 </template>
