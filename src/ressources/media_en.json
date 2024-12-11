@@ -3,8 +3,7 @@
   "acd": "Audio CD",
   "cdr": "CD-ROM",
   "dvd": "DVD",
-  "vid": "Video tape",
-  "cas": "Audio tape",
+  "jeu": "Game",
   "web": "Link",
   "dvdr": "DVD-ROM",
   "dcd": "Data CD"

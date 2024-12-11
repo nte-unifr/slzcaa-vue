@@ -1,11 +1,15 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
 import { useEventBus } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
 import levelsEn from '../ressources/levels_en.json'
 import FilterCheckList from './FilterCheckList.vue'
 
 const emit = defineEmits(['toggle'])
 const bus = useEventBus('reset')
+const { t } = useI18n()
+const url = 'https://www.coe.int/en/web/portfolio/self-assessment-grid'
+const footer = `<a href="${url}">${t('filter.level_description')}</a>`
 
 const items = ref(
   Object.keys(levelsEn).map((k) => {
@@ -38,5 +42,10 @@ watchEffect(() => {
 </script>
 
 <template>
-  <FilterCheckList :title="$t('filter.target_levels')" :items="items" @toggle="onChange" />
+  <FilterCheckList
+    :title="$t('filter.target_levels')"
+    :items="items"
+    :footer="footer"
+    @toggle="onChange"
+  />
 </template>

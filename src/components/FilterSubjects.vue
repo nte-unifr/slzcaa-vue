@@ -5,58 +5,38 @@ import { useI18n } from 'vue-i18n'
 import subjectsMatch from '../ressources/label_subjects_match.json'
 import subjectsEverydayEn from '../ressources/label_subjects_everyday_en.json'
 import subjectsProEn from '../ressources/label_subjects_pro_en.json'
+import FilterCheckList from './FilterCheckList.vue'
 
 const emit = defineEmits(['toggle'])
 const bus = useEventBus('reset')
 const { t } = useI18n()
 
-const itemsEveryday = ref([])
-const itemsPro = ref([])
+const items = ref([])
 
 bus.on(() => {
-  itemsEveryday.value.forEach((item) => (item.checked = true))
-  itemsPro.value.forEach((item) => (item.checked = true))
+  items.value.forEach((item) => (item.checked = true))
 })
 
-function onChangeEveryday(e) {
-  const param = e.target.value
-  const index = itemsEveryday.value.findIndex((item) => item.key === param)
-  itemsEveryday.value[index].checked = !itemsEveryday.value[index].checked
-}
-
-function onChangePro(e) {
-  const param = e.target.value
-  const index = itemsPro.value.findIndex((item) => item.key === param)
-  itemsPro.value[index].checked = !itemsPro.value[index].checked
-}
-
-function onSelectAll() {
-  const items = itemsEveryday.value.concat(itemsPro.value)
-  const allChecked = items.every((item) => item.checked)
-  const toToggle = (item) => allChecked || !item.checked
-  items.filter(toToggle).forEach((item) => {
-    item.checked = !item.checked
-  })
+function onChange(param) {
+  const index = items.value.findIndex((e) => e.key === param)
+  items.value[index].checked = !items.value[index].checked
 }
 
 onMounted(() => {
   const everydayTmp = Object.keys(subjectsEverydayEn).map((key) => {
     return { key: key, value: t(key), checked: true }
   })
-  everydayTmp.sort((a, b) => a.value.localeCompare(b.value))
-  itemsEveryday.value = everydayTmp
-
   const proTmp = Object.keys(subjectsProEn).map((key) => {
     return { key: key, value: t(key), checked: true }
   })
-  proTmp.sort((a, b) => a.value.localeCompare(b.value))
-  itemsPro.value = proTmp
+  const tmp = everydayTmp.concat(proTmp)
+  tmp.sort((a, b) => a.value.localeCompare(b.value))
+  items.value = tmp
 })
 
 watchEffect(() => {
-  const nbSubject = itemsEveryday.value.length + itemsPro.value.length
-  const selected = itemsEveryday.value.concat(itemsPro.value).filter((item) => item.checked)
-  const paramRequired = selected.length > 0 && selected.length < nbSubject
+  const selected = items.value.filter((item) => item.checked)
+  const paramRequired = selected.length > 0 && selected.length < items.value.length
   if (paramRequired) {
     const rows = []
     selected.forEach((e) => {
@@ -77,50 +57,5 @@ watchEffect(() => {
 </script>
 
 <template>
-  <!-- Note: we cannot use the `FilterCheckList` component because there are two groups. -->
-  <details class="collapse collapse-arrow bg-base-200 border-2 border-slate-200 my-1">
-    <summary class="collapse-title text-l font-medium">
-      {{ $t('filter.subject_areas') }}
-    </summary>
-    <div class="collapse-content bg-white">
-      <p class="text-center">
-        <button class="btn btn-xs" v-on:click="onSelectAll">
-          <span v-if="itemsEveryday.concat(itemsPro).every((item) => item.checked)">{{
-            $t('filter.unselect_all')
-          }}</span>
-          <span v-else>{{ $t('filter.select_all') }}</span>
-        </button>
-      </p>
-      <p class="my-4">{{ $t('filter.subject_everyday') }}</p>
-      <ul>
-        <li v-for="(item, index) in itemsEveryday" :key="index" class="border-t-2">
-          <label class="label cursor-pointer">
-            <span class="label-text">{{ $t(item.key) }}</span>
-            <input
-              type="checkbox"
-              class="checkbox"
-              :value="item.key"
-              :checked="item.checked"
-              v-on:change="onChangeEveryday"
-            />
-          </label>
-        </li>
-      </ul>
-      <p class="my-4">{{ $t('filter.subject_pro') }}</p>
-      <ul>
-        <li v-for="(item, index) in itemsPro" :key="index" class="border-t-2">
-          <label class="label cursor-pointer">
-            <span class="label-text">{{ $t(item.key) }}</span>
-            <input
-              type="checkbox"
-              class="checkbox"
-              :value="item.key"
-              :checked="item.checked"
-              v-on:change="onChangePro"
-            />
-          </label>
-        </li>
-      </ul>
-    </div>
-  </details>
+  <FilterCheckList :title="$t('filter.subject_areas')" :items="items" @toggle="onChange" />
 </template>

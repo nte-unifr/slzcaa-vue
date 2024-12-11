@@ -25,6 +25,7 @@
     "yes": "Yes",
     "no": "No",
     "target_levels": "Target levels",
+    "level_description": "Level description",
     "skills": "Skills",
     "trick_title": "Tipp!",
     "trick_desc": "Different combinations of skills and target levels (e.g. Reading B2 + Speaking A2) require separate search operations.",

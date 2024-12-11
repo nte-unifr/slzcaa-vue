@@ -7,6 +7,10 @@ const props = defineProps({
   items: {
     type: Array,
     required: true
+  },
+  footer: {
+    type: String,
+    required: false
   }
 })
 
@@ -53,6 +57,7 @@ function onSelectAll() {
           </label>
         </li>
       </ul>
+      <p v-if="props.footer" v-html="props.footer"></p>
     </div>
   </details>
 </template>

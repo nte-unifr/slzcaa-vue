@@ -7,9 +7,9 @@ const bus = useEventBus('reset')
 
 const items = ref([
   { key: '', label: 'All', checked: true },
-  { key: '1990', label: '1990', checked: false },
   { key: '2000', label: '2000', checked: false },
-  { key: '2010', label: '2010', checked: false }
+  { key: '2010', label: '2010', checked: false },
+  { key: '2020', label: '2020', checked: false }
 ])
 
 bus.on(() => {

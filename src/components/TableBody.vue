@@ -1,6 +1,6 @@
 <script setup>
 import TableCellSort from './TableCellSort.vue'
-import { fmtCode, fmtLanguage, fmtSplitAndLower, fmtSubject } from '../helper.js'
+import { fmtBoolean, fmtCode, fmtLanguage, fmtSplitAndLower, fmtSubject } from '../helper.js'
 import { i18n } from '../i18n'
 
 const props = defineProps({
@@ -73,7 +73,7 @@ function setSort(field, isAscending) {
             {{ i18n.global.t('table.author') }}
           </th>
           <th v-show="props.cols.has('code')">Code</th>
-          <!--<th v-show="props.cols.has('ble')">{{ $t('table.loanable') }}</th>-->
+          <th v-show="props.cols.has('ble')">{{ $t('table.loanable') }}</th>
           <th v-show="props.cols.has('kommentar')">{{ $t('table.description') }}</th>
         </tr>
       </thead>
@@ -120,11 +120,9 @@ function setSort(field, isAscending) {
           <td v-show="props.cols.has('code')">
             {{ fmtCode(row) }}
           </td>
-          <!--
           <td v-show="props.cols.has('ble')">
             {{ fmtBoolean(row.ausleihe_ble) }}
           </td>
-          -->
           <td v-show="props.cols.has('kommentar')">{{ row.kommentar }}</td>
         </tr>
       </tbody>

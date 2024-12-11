@@ -7,7 +7,7 @@ import FilterLevels from './FilterLevels.vue'
 // import FilterLoanable from './FilterLoanable.vue'
 import FilterMedia from './FilterMedia.vue'
 import FilterModalities from './FilterModalities.vue'
-import FilterPreinstalled from './FilterPreinstalled.vue'
+// import FilterPreinstalled from './FilterPreinstalled.vue'
 import FilterSkills from './FilterSkills.vue'
 import FilterSubjects from './FilterSubjects.vue'
 import FilterText from './FilterText.vue'
@@ -28,7 +28,7 @@ const filterLevels = ref('')
 // const filterLoanable = ref('')
 const filterMedia = ref('')
 const filterModalities = ref('')
-const filterPreinstalled = ref('')
+// const filterPreinstalled = ref('')
 const filterSearch = ref('')
 const filterSkills = ref('')
 const filterSubjects = ref('')
@@ -58,9 +58,9 @@ function handleModalities(param) {
   filterModalities.value = param
 }
 
-function handlePreinstalled(param) {
-  filterPreinstalled.value = param
-}
+// function handlePreinstalled(param) {
+//   filterPreinstalled.value = param
+// }
 
 function handleReset() {
   bus.emit('Reset event')
@@ -90,7 +90,7 @@ watchEffect(() => {
     // filterLoanable.value,
     filterMedia.value,
     filterModalities.value,
-    filterPreinstalled.value,
+    // filterPreinstalled.value,
     filterSearch.value,
     filterSkills.value,
     filterSubjects.value,
@@ -115,8 +115,8 @@ watchEffect(() => {
   <FilterMedia @toggle="handleMedia" />
   <FilterYear @change-year="handleYear" />
   <FilterModalities @toggle="handleModalities" />
-  <FilterPreinstalled @toggle="handlePreinstalled" />
   <!--
+    <FilterPreinstalled @toggle="handlePreinstalled" />
     <FilterLoanable @toggle="handleLoanable" />
   -->
   <div class="border border-base-300 bg-base-200 my-1 text-center">
