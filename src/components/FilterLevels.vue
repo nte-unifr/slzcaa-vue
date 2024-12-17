@@ -9,7 +9,9 @@ const emit = defineEmits(['toggle'])
 const bus = useEventBus('reset')
 const { t } = useI18n()
 const url = 'https://www.coe.int/en/web/portfolio/self-assessment-grid'
-const footer = `<a href="${url}">${t('filter.level_description')}</a>`
+const footer = `
+  <a href="${url}" target="_blank">${t('filter.level_description')}</a>
+`
 
 const items = ref(
   Object.keys(levelsEn).map((k) => {
