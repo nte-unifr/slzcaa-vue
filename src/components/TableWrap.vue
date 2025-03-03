@@ -23,7 +23,7 @@ const props = defineProps({
 
 const emit = defineEmits(['downloadPdf', 'resetSelection', 'selectRow'])
 
-const BASE_URL = 'https://eddb.unifr.ch/slzcaa-admin/items/materials'
+const BASE_URL = import.meta.env.VITE_APP_BASE_API
 
 const page = ref(1)
 const nbRowsFound = ref(0)
@@ -32,18 +32,14 @@ const sort = ref({ field: 'titel', ascending: true })
 
 const urlDataTable = computed(() => {
   const limitArg = `limit=${NB_ELEMENT_PER_PAGE}`
-  const pageArg = `page=${page.value}`
-  const filterArg = `filter=${props.filterParam}`
+  const offsetArg = `offset=${NB_ELEMENT_PER_PAGE * (page.value - 1)}`
   const ascArg = sort.value.ascending ? '' : '-'
   const sortArg = `sort=${ascArg}${sort.value.field}`
-  return `${BASE_URL}?${limitArg}&${pageArg}&${filterArg}&${sortArg}`
+  const whereArg = `where=${props.filterParam}`
+  return `${BASE_URL}?${limitArg}&${offsetArg}&${sortArg}&${whereArg}`
 })
-const urlNbFound = computed(() => {
-  return `${BASE_URL}?filter=${props.filterParam}&aggregate[count]=*`
-})
-const urlNbTotal = `${BASE_URL}?aggregate[count]=*`
+const urlNbTotal = `${BASE_URL}/count`
 
-const { data: dataCountFound, error: errorCountFound } = useFetch(urlNbFound)
 const { data: dataCountTotal, error: errorCountTotal } = useFetch(urlNbTotal)
 const { data: dataTable, error: errorTable } = useFetch(urlDataTable)
 
@@ -54,15 +50,17 @@ watch(
   }
 )
 
-watch(dataCountFound, () => {
-  if (dataCountFound.value?.data[0]) {
-    nbRowsFound.value = dataCountFound.value.data[0].count
+watch(dataCountTotal, () => {
+  const tmp = dataCountTotal.value?.count
+  if (tmp) {
+    nbRowsInDatabase.value = tmp
   }
 })
 
-watch(dataCountTotal, () => {
-  if (dataCountTotal.value?.data[0]) {
-    nbRowsInDatabase.value = dataCountTotal.value.data[0].count
+watch(dataTable, () => {
+  const tmp = dataTable.value?.pageInfo.totalRows
+  if (tmp) {
+    nbRowsFound.value = tmp
   }
 })
 
@@ -80,8 +78,8 @@ function resetSelection() {
 }
 
 function selectRow(id) {
-  const row = dataTable.value.data.find((item) => item.id == id)
-  const isChecked = props.selectedRows.has(row.id)
+  const row = dataTable.value.list.find((item) => item.Id == id)
+  const isChecked = props.selectedRows.has(row.Id)
   emit('selectRow', row, isChecked)
 }
 
@@ -93,9 +91,8 @@ function setSort(field, isAscending) {
 </script>
 
 <template>
-  <div v-if="errorCountFound">Oops! Error encountered: {{ errorCountFound.message }}</div>
   <div v-if="errorCountTotal">Oops! Error encountered: {{ errorCountTotal.message }}</div>
-  <div v-else-if="dataCountFound && dataCountTotal">
+  <div v-else-if="dataTable && dataCountTotal">
     <TableInfo
       :currentPage="page"
       :nbEntriesFound="nbRowsFound"
@@ -113,7 +110,7 @@ function setSort(field, isAscending) {
   <div v-else-if="dataTable">
     <TableBody
       :cols="columnsChecked"
-      :rows="dataTable.data"
+      :rows="dataTable.list"
       :sort="sort"
       :selectedRows="selectedRows"
       @select-row="selectRow"

@@ -63,7 +63,7 @@ function selectRow(row, isChecked) {
         <TableWrap
           :columnsChecked="columnsChecked"
           :filterParam="filterParam"
-          :selectedRows="new Set([...itemsSelected].map((x) => x.id))"
+          :selectedRows="new Set([...itemsSelected].map((x) => x.Id))"
           @download-pdf="requestDownload"
           @select-row="selectRow"
           @resetSelection="resetSelection"

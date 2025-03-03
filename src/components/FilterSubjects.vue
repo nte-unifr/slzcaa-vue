@@ -42,13 +42,13 @@ watchEffect(() => {
     selected.forEach((e) => {
       subjectsMatch[e.key].forEach((keyword) => {
         if (keyword) {
-          rows.push({ fachbezug: { _contains: keyword } })
+          rows.push(`(fachbezug,like,${keyword})`)
         } else {
-          rows.push({ fachbezug: { _null: true } })
+          rows.push('(fachbezug,is,null)')
         }
       })
     })
-    const param = JSON.stringify({ _or: rows })
+    const param = `(${rows.join('~or')})`
     emit('toggle', param)
   } else {
     emit('toggle', '')

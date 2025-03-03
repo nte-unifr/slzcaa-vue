@@ -33,9 +33,9 @@ watchEffect(() => {
   const paramRequired = selected.length > 0 && selected.length < items.value.length
   if (paramRequired) {
     const rows = selected.map((e) => {
-      return { asl: { _contains: e.key } }
+      return `(asl,like,${e.key})`
     })
-    const param = JSON.stringify({ _or: rows })
+    const param = `(${rows.join('~or')})`
     emit('toggle', param)
   } else {
     emit('toggle', '')

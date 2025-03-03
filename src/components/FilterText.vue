@@ -16,9 +16,9 @@ watchEffect(() => {
   const q = query.value.trim()
   if (q.length) {
     const conditions = fields.map((f) => {
-      return { [f]: { _contains: q } }
+      return `(${f},like,${q})`
     })
-    const param = JSON.stringify({ _or: conditions })
+    const param = `(${conditions.join('~or')})`
     emit('search', param)
   } else {
     emit('search', '')

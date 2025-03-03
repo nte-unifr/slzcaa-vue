@@ -10,7 +10,10 @@ export function useFetch(url) {
 
     const valueUrl = toValue(url)
     if (valueUrl) {
-      fetch(valueUrl, { cache: 'force-cache' })
+      fetch(valueUrl, {
+        headers: { 'xc-token': import.meta.env.VITE_APP_API_TOKEN },
+        cache: 'force-cache'
+      })
         .then((res) => res.json())
         .then((json) => (data.value = json))
         .catch((err) => (error.value = err))

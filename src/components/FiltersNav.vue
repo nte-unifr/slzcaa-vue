@@ -84,7 +84,7 @@ function handleYear(param) {
 
 watchEffect(() => {
   const conditions = [
-    JSON.stringify({ spr: { _contains: props.language } }), // field in the header
+    `(spr,like,${props.language})`, // field in the header
     filterLangSrc.value,
     filterLevels.value,
     // filterLoanable.value,
@@ -96,9 +96,8 @@ watchEffect(() => {
     filterSubjects.value,
     filterYear.value
   ]
-  const param = conditions.filter((c) => c).join(',')
-  const tmp = `{"_and":[${param}]}`
-  emit('filter', tmp)
+  const param = conditions.filter((c) => c).join('~and')
+  emit('filter', param)
 })
 </script>
 

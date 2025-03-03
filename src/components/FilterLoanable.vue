@@ -18,7 +18,7 @@ function onChange() {
 
 watchEffect(() => {
   if (checked.value) {
-    const param = JSON.stringify({ ausleihe_ble: { _eq: true } })
+    const param = '(ausleihe_ble,is,true)'
     emit('toggle', param)
   } else {
     emit('toggle', '')

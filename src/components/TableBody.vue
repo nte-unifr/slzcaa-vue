@@ -84,8 +84,8 @@ function setSort(field, isAscending) {
               <input
                 type="checkbox"
                 class="checkbox"
-                :value="row.id"
-                :checked="props.selectedRows.has(row.id)"
+                :value="row.Id"
+                :checked="props.selectedRows.has(row.Id)"
                 v-on:change="onChange"
               />
             </label>

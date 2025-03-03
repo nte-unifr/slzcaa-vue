@@ -25,7 +25,7 @@ watchEffect(() => {
   const selected = items.value.find((item) => item.checked)
   const paramRequired = selected.key !== ''
   if (paramRequired) {
-    const param = JSON.stringify({ jahr: { _gte: selected.key } })
+    const param = `(jahr,ge,${selected.key})`
     emit('changeYear', param)
   } else {
     emit('changeYear', '')

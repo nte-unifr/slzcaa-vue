@@ -37,9 +37,9 @@ watchEffect(() => {
   if (paramRequired) {
     const rows = selected.map((e) => {
       const key = e.key.charAt(0).toUpperCase() + e.key.slice(1)
-      return { ausgangssprache: { _contains: key } }
+      return `(ausgangssprache,like,${key})`
     })
-    const param = JSON.stringify({ _or: rows })
+    const param = `(${rows.join('~or')})`
     emit('toggle', param)
   } else {
     emit('toggle', '')
