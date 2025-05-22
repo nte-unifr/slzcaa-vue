@@ -35,7 +35,8 @@ const urlDataTable = computed(() => {
   const offsetArg = `offset=${NB_ELEMENT_PER_PAGE * (page.value - 1)}`
   const ascArg = sort.value.ascending ? '' : '-'
   const sortArg = `sort=${ascArg}${sort.value.field}`
-  const whereArg = `where=${props.filterParam}`
+  // Remove the "@" in the where clause when the v3 api will be available.
+  const whereArg = `where=@${props.filterParam}`
   return `${BASE_URL}?${limitArg}&${offsetArg}&${sortArg}&${whereArg}`
 })
 const urlNbTotal = `${BASE_URL}/count`
