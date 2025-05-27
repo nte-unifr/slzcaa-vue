@@ -44,6 +44,9 @@ export function fmtSplitAndLower(text) {
 }
 
 export function fmtSubject(langInGerman) {
+  if (langInGerman === null) {
+    return ''
+  }
   if (!subjectLookup.has(langInGerman)) {
     return langInGerman
   }

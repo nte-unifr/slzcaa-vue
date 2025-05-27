@@ -33,5 +33,6 @@
   "medizin_pharmazie": ["medizin", "pharmazie"],
   "berufssprache": ["beruf", "tourismus"],
   "tourismusberufe": ["gastronomie"],
-  "sprachenlernen": ["didaktik", "methodik"]
+  "sprachenlernen": ["didaktik", "methodik"],
+  "test": ["test"]
 }
